@@ -48,6 +48,9 @@ public class CreateAccountController {
                     break;
             }
         }
+        else {
+            JOptionPane.showMessageDialog(null,"please enter the same password");
+        }
 
     }
 
