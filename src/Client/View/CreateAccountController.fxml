@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.CreateAccountController">
+   <children>
+      <TextField fx:id="usernameText" layoutX="265.0" layoutY="89.0" />
+      <Label layoutX="131.0" layoutY="94.0" text="Username" />
+      <Label layoutX="131.0" layoutY="163.0" text="Password" />
+      <Label layoutX="131.0" layoutY="236.0" text="PasswordAgain" />
+      <PasswordField fx:id="passwordField" layoutX="265.0" layoutY="158.0" />
+      <PasswordField fx:id="passwordFieldAgain" layoutX="265.0" layoutY="231.0" />
+      <Button layoutX="317.0" layoutY="320.0" mnemonicParsing="false" onAction="#create" prefHeight="27.0" prefWidth="81.0" text="Create" />
+      <Button layoutX="184.0" layoutY="320.0" mnemonicParsing="false" onAction="#cancel" prefHeight="27.0" prefWidth="81.0" text="Cancel" />
+      <Label layoutX="212.0" layoutY="26.0" text="Create Account">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
