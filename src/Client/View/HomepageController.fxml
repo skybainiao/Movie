@@ -69,7 +69,7 @@
       <VBox layoutX="-1.0" layoutY="62.0" prefHeight="688.0" prefWidth="205.0">
          <children>
             <Line endX="102.87867736816406" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
-            <Label fx:id="getAllMovies" onDragDetected="#getAllMovies" text="Recommend Movies" textFill="#dddddd">
+            <Label fx:id="getAllMovies" onMouseClicked="#getAllMovies" text="Recommend Movies" textFill="#dddddd">
                <font>
                   <Font size="23.0" />
                </font>
