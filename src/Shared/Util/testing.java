@@ -13,6 +13,6 @@ public class testing {
 
 class test{
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null,"Nice");
+        JOptionPane.showMessageDialog(null,"Nice","Message",JOptionPane.INFORMATION_MESSAGE);
     }
 }

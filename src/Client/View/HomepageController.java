@@ -5,7 +5,7 @@ import Shared.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,13 +31,13 @@ public class HomepageController {
     @FXML
     private TableColumn<Movie,String> status;
     @FXML
-    private Button getAllMovies;
+    private Label getAllMovies;
     @FXML
-    private Button getLikedMovies;
+    private Label getLikedMovies;
     @FXML
-    private Button getBookedMovies;
+    private Label getBookedMovies;
     @FXML
-    private Button getWatchedMovies;
+    private Label getWatchedMovies;
 
 
 
