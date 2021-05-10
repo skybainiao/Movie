@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -17,7 +19,7 @@
    <children>
       <AnchorPane>
          <children>
-            <TableView fx:id="movieTableView" layoutX="207.0" layoutY="61.0" prefHeight="688.0" prefWidth="920.0" style="-fx-background-color: grey;">
+            <TableView fx:id="movieTableView" layoutX="207.0" layoutY="165.0" prefHeight="584.0" prefWidth="920.0" style="-fx-background-color: grey;">
               <columns>
                 <TableColumn fx:id="id" prefWidth="40.0" style="-fx-background-color: grey;" text="ID" />
                 <TableColumn fx:id="title" minWidth="0.0" prefWidth="206.0" style="-fx-background-color: grey;" text="Title" />
@@ -32,6 +34,15 @@
                   <Line endX="-100.0" endY="679.0" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
                </children>
             </VBox>
+            <HBox layoutX="207.0" layoutY="69.0" prefHeight="91.0" prefWidth="922.0">
+               <children>
+                  <ImageView fitHeight="232.0" fitWidth="922.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@picture/EC8B6433A2A864C8CA0868BC9D8EC0FC.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="62.0" prefWidth="1128.0">
@@ -66,7 +77,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="-1.0" layoutY="62.0" prefHeight="688.0" prefWidth="205.0">
+      <VBox layoutX="-1.0" layoutY="68.0" prefHeight="682.0" prefWidth="206.0">
          <children>
             <Line endX="102.87867736816406" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
             <Label fx:id="getAllMovies" onMouseClicked="#getAllMovies" text="Recommend Movies" textFill="#dddddd">
