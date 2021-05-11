@@ -19,7 +19,7 @@
    <children>
       <AnchorPane>
          <children>
-            <TableView fx:id="movieTableView" layoutX="207.0" layoutY="165.0" prefHeight="584.0" prefWidth="920.0" style="-fx-background-color: grey;">
+            <TableView fx:id="movieTableView" layoutX="207.0" layoutY="152.0" prefHeight="597.0" prefWidth="920.0" style="-fx-background-color: grey;">
               <columns>
                 <TableColumn fx:id="id" prefWidth="40.0" style="-fx-background-color: grey;" text="ID" />
                 <TableColumn fx:id="title" minWidth="0.0" prefWidth="206.0" style="-fx-background-color: grey;" text="Title" />
@@ -34,11 +34,11 @@
                   <Line endX="-100.0" endY="679.0" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
                </children>
             </VBox>
-            <HBox layoutX="207.0" layoutY="69.0" prefHeight="91.0" prefWidth="922.0">
+            <HBox layoutX="207.0" layoutY="62.0" prefHeight="98.0" prefWidth="922.0">
                <children>
-                  <ImageView fitHeight="232.0" fitWidth="922.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="92.0" fitWidth="922.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@picture/EC8B6433A2A864C8CA0868BC9D8EC0FC.jpg" />
+                        <Image url="@picture/cjj.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -69,47 +69,63 @@
             </TextField>
             <Label text="Search" textFill="#e1dede">
                <HBox.margin>
-                  <Insets left="40.0" top="22.0" />
+                  <Insets left="20.0" top="20.0" />
                </HBox.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font size="20.0" />
                </font>
+            </Label>
+            <ImageView fitHeight="51.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/B5D6843C2B1890500BAE4E250BFF37E4.jpg" />
+               </image>
+               <HBox.margin>
+                  <Insets left="200.0" top="7.0" />
+               </HBox.margin>
+               <effect>
+                  <InnerShadow choke="0.17" height="30.18" radius="13.835" width="27.16" />
+               </effect>
+            </ImageView>
+            <Label text="Log out" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="5.0" top="22.0" />
+               </HBox.margin>
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="-1.0" layoutY="68.0" prefHeight="682.0" prefWidth="206.0">
+      <VBox layoutX="-1.0" layoutY="62.0" prefHeight="688.0" prefWidth="206.0">
          <children>
             <Line endX="102.87867736816406" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
             <Label fx:id="getAllMovies" onMouseClicked="#getAllMovies" text="Recommend Movies" textFill="#dddddd">
                <font>
-                  <Font size="23.0" />
+                  <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="5.0" top="100.0" />
+                  <Insets left="5.0" top="150.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="getLikedMovies" text="Liked Movies" textFill="#dddddd">
                <font>
-                  <Font size="23.0" />
+                  <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="5.0" top="20.0" />
+                  <Insets left="5.0" top="40.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="getBookedMovies" text="Booked Movies" textFill="#dddddd">
                <font>
-                  <Font size="24.0" />
+                  <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="5.0" top="20.0" />
+                  <Insets left="5.0" top="40.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="getWatchedMovies" text="Whatched Movies" textFill="#dddddd">
                <font>
-                  <Font size="21.0" />
+                  <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="5.0" top="20.0" />
+                  <Insets left="5.0" top="40.0" />
                </VBox.margin>
             </Label>
          </children></VBox>

@@ -54,7 +54,7 @@ public class LoginController {
                     JOptionPane.showMessageDialog(null,"invalid username or password");
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null,"enter your username and password");
+                    JOptionPane.showMessageDialog(null,"enter your valid username and password");
                     break;
             }
         }
