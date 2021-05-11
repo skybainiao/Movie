@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class testing {
-
-
     public static void main(String[] args) throws Exception {
         DBUtil dbUtil = new DBUtil();
         dbUtil.getCon();
