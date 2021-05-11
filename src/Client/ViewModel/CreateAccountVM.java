@@ -45,6 +45,12 @@ public class CreateAccountVM {
         return "correct";
     }
 
+    public void clear(){
+        username.setValue("");
+        password.setValue("");
+        passwordAgain.setValue("");
+    }
+
     public StringProperty getUsername(){
         return username;
     }

@@ -38,6 +38,8 @@ public class HomepageController {
     private Label getBookedMovies;
     @FXML
     private Label getWatchedMovies;
+    @FXML
+    private Label logout;
 
 
 
@@ -65,6 +67,10 @@ public class HomepageController {
         ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
         movieObservableList.addAll(homepageVM.allMovies());
         movieTableView.setItems(movieObservableList);
+    }
+
+    public void logout(){
+        viewHandler.openLoginView();
     }
 
 

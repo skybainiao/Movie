@@ -35,6 +35,7 @@ public class CreateAccountController {
             switch (createAccountVM.validChar()){
                 case "correct":
                     createAccountVM.addUser();
+                    createAccountVM.clear();
                     viewHandler.openLoginView();
                     break;
                 case "too long username":
