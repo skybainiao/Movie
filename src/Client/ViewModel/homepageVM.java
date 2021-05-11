@@ -10,18 +10,10 @@ import java.util.ArrayList;
 
 public class homepageVM {
     private CustomerModel model;
-    private StringProperty likedMovies;
-    private StringProperty bookedMovies;
-    private StringProperty watchedMovies;
-    private StringProperty allMovies;
     private StringProperty logout;
 
     public homepageVM(CustomerModel model){
         this.model=model;
-        likedMovies=new SimpleStringProperty("LikedMovies");
-        bookedMovies=new SimpleStringProperty("BookedMovies");
-        watchedMovies=new SimpleStringProperty("WatchedMovies");
-        allMovies=new SimpleStringProperty("AllMovies");
         logout=new SimpleStringProperty("Logout");
     }
 
@@ -55,22 +47,6 @@ public class homepageVM {
 
 
 
-
-    public StringProperty getLikedMovies(){
-        return likedMovies;
-    }
-
-    public StringProperty getBookedMovies(){
-        return bookedMovies;
-    }
-
-    public StringProperty getWatchedMovies(){
-        return watchedMovies;
-    }
-
-    public StringProperty getAllMovies(){
-        return allMovies;
-    }
 
     public StringProperty getLogout(){
         return logout;

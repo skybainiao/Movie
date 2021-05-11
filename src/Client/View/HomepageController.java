@@ -31,14 +31,6 @@ public class HomepageController {
     @FXML
     private TableColumn<Movie,String> status;
     @FXML
-    private Label getAllMovies;
-    @FXML
-    private Label getLikedMovies;
-    @FXML
-    private Label getBookedMovies;
-    @FXML
-    private Label getWatchedMovies;
-    @FXML
     private Label logout;
 
 
@@ -47,10 +39,6 @@ public class HomepageController {
         this.homepageVM = homepageVM;
         this.viewHandler=viewHandler;
 
-        getAllMovies.textProperty().bindBidirectional(homepageVM.getAllMovies());
-        getBookedMovies.textProperty().bindBidirectional(homepageVM.getBookedMovies());
-        getLikedMovies.textProperty().bindBidirectional(homepageVM.getLikedMovies());
-        getWatchedMovies.textProperty().bindBidirectional(homepageVM.getWatchedMovies());
         logout.textProperty().bindBidirectional(homepageVM.getLogout());
 
         title.setCellValueFactory(new PropertyValueFactory("title"));

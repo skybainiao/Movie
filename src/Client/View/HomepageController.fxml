@@ -47,7 +47,7 @@
       </AnchorPane>
       <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="62.0" prefWidth="1128.0">
          <children>
-            <Label prefHeight="62.0" prefWidth="148.0" text="Bilibili" textFill="#ff5757">
+            <Label prefHeight="44.0" prefWidth="99.0" text="Logo" textFill="#ff5757">
                <font>
                   <Font size="43.0" />
                </font>
@@ -57,7 +57,7 @@
             </Label>
             <TextField prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: #363636#363636 #363636#363636;">
                <HBox.margin>
-                  <Insets left="230.0" top="20.0" />
+                  <Insets left="280.0" top="20.0" />
                </HBox.margin>
                <effect>
                   <InnerShadow>
@@ -77,7 +77,7 @@
             </Label>
             <ImageView fitHeight="51.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@picture/B5D6843C2B1890500BAE4E250BFF37E4.jpg" />
+                  <Image url="@picture/E564A3081DA752292D55A05FAE71EF6C.jpg" />
                </image>
                <HBox.margin>
                   <Insets left="200.0" top="7.0" />
@@ -96,38 +96,38 @@
       <VBox layoutX="-1.0" layoutY="62.0" prefHeight="688.0" prefWidth="206.0">
          <children>
             <Line endX="102.87867736816406" startX="-100.0" stroke="#5e5e5e" strokeWidth="3.0" />
-            <Label fx:id="getAllMovies" onMouseClicked="#getAllMovies" text="Recommend Movies" textFill="#dddddd">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            <ImageView fitHeight="150.0" fitWidth="201.0" onMouseClicked="#getAllMovies" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/recommend.png" />
+               </image>
                <VBox.margin>
-                  <Insets left="5.0" top="150.0" />
+                  <Insets top="150.0" />
                </VBox.margin>
-            </Label>
-            <Label fx:id="getLikedMovies" text="Liked Movies" textFill="#dddddd">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/liked.png" />
+               </image>
                <VBox.margin>
-                  <Insets left="5.0" top="40.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Label>
-            <Label fx:id="getBookedMovies" text="Booked Movies" textFill="#dddddd">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/book.png" />
+               </image>
                <VBox.margin>
-                  <Insets left="5.0" top="40.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Label>
-            <Label fx:id="getWatchedMovies" text="Whatched Movies" textFill="#dddddd">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@picture/watch.png" />
+               </image>
                <VBox.margin>
-                  <Insets left="5.0" top="40.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Label>
+            </ImageView>
          </children></VBox>
    </children>
 </AnchorPane>
