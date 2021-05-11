@@ -1,6 +1,6 @@
 package Client.Model.Admin;
 
-import Shared.Movie;
+import Shared.Model.Movie;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

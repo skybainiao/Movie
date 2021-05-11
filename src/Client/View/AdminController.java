@@ -1,7 +1,7 @@
 package Client.View;
 
 import Client.ViewModel.AdminVM;
-import Shared.Movie;
+import Shared.Model.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

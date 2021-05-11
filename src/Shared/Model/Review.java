@@ -11,6 +11,7 @@ public class Review implements Serializable {
         this.star=star;
     }
 
+
     public void setText(String text) {
         this.text = text;
     }

@@ -1,7 +1,7 @@
 package Client.Networking;
 
 import Server.Server;
-import Shared.Movie;
+import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
 

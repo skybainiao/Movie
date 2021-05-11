@@ -2,7 +2,7 @@ package Server;
 
 import Shared.Model.Review;
 import Shared.Model.User;
-import Shared.Movie;
+import Shared.Model.Movie;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

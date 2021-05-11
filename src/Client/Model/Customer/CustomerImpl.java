@@ -1,7 +1,7 @@
 package Client.Model.Customer;
 
 import Client.Networking.Client;
-import Shared.Movie;
+import Shared.Model.Movie;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

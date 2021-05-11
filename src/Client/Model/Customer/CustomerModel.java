@@ -1,6 +1,6 @@
 package Client.Model.Customer;
 
-import Shared.Movie;
+import Shared.Model.Movie;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package Server;
 import Shared.Model.User;
-import Shared.Movie;
+import Shared.Model.Movie;
 import Shared.Model.Review;
 
 import java.rmi.Remote;

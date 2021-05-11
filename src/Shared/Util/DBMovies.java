@@ -1,6 +1,6 @@
 package Shared.Util;
 
-import Shared.Movie;
+import Shared.Model.Movie;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

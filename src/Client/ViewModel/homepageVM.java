@@ -1,7 +1,7 @@
 package Client.ViewModel;
 
 import Client.Model.Customer.CustomerModel;
-import Shared.Movie;
+import Shared.Model.Movie;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 

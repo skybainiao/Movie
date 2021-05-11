@@ -1,7 +1,7 @@
 package Client.Networking;
 
 import Shared.Model.User;
-import Shared.Movie;
+import Shared.Model.Movie;
 import Shared.Model.Review;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
