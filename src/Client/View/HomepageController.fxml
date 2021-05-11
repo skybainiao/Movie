@@ -86,7 +86,7 @@
                   <InnerShadow choke="0.17" height="30.18" radius="13.835" width="27.16" />
                </effect>
             </ImageView>
-            <Label text="Log out" textFill="WHITE">
+            <Label fx:id="logout" onMouseClicked="#logout" text="Log out" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" top="22.0" />
                </HBox.margin>

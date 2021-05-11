@@ -14,6 +14,7 @@ public class homepageVM {
     private StringProperty bookedMovies;
     private StringProperty watchedMovies;
     private StringProperty allMovies;
+    private StringProperty logout;
 
     public homepageVM(CustomerModel model){
         this.model=model;
@@ -21,6 +22,7 @@ public class homepageVM {
         bookedMovies=new SimpleStringProperty("BookedMovies");
         watchedMovies=new SimpleStringProperty("WatchedMovies");
         allMovies=new SimpleStringProperty("AllMovies");
+        logout=new SimpleStringProperty("Logout");
     }
 
     public void addLikeMovies(Movie movie) throws RemoteException {
@@ -68,5 +70,9 @@ public class homepageVM {
 
     public StringProperty getAllMovies(){
         return allMovies;
+    }
+
+    public StringProperty getLogout(){
+        return logout;
     }
 }

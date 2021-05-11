@@ -51,6 +51,7 @@ public class HomepageController {
         getBookedMovies.textProperty().bindBidirectional(homepageVM.getBookedMovies());
         getLikedMovies.textProperty().bindBidirectional(homepageVM.getLikedMovies());
         getWatchedMovies.textProperty().bindBidirectional(homepageVM.getWatchedMovies());
+        logout.textProperty().bindBidirectional(homepageVM.getLogout());
 
         title.setCellValueFactory(new PropertyValueFactory("title"));
         id.setCellValueFactory(new PropertyValueFactory("id"));
