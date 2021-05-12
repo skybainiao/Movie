@@ -2,27 +2,36 @@ package Shared.Util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Properties;
+import java.sql.SQLException;
 
 public class DBUtil {
-    private String dbUrl="jdbc:postgresql://localhost:5432/company";
-    //?user=postgres&password=cjj2468830035&ssl=true
-    Properties props = new Properties();
-    private String dbUserName="postgres";
-    private String dbPassword="stq20000409";
 
-    public Connection getCon()throws Exception{
-        props.setProperty("user","postgres");
-        props.setProperty("password","cjj2468830035");
-        props.setProperty("ssl","true");
-        Connection coon = DriverManager.getConnection(dbUrl,props);
-       // Connection con= DriverManager.getConnection(dbUrl,dbUserName,dbPassword);
-        return coon;
-    }
+        private static String driver = "org.postgresql.Driver";
+        private static String url ="jdbc:postgresql://localhost:5432/postgres";
+        private static String user = "postgres";
+        private static String password = "cjj2468830035";
 
-    public void closeCon(Connection con)throws Exception{
-        if(con!=null) {
-            con.close();
+        static {
+            try {
+                Class.forName(driver);
+            } catch (ClassNotFoundException e) {
+                System.err.println("Error");
+                e.printStackTrace();
+            }
         }
-    }
+
+        public Connection getConnection() throws Exception{
+            Connection con = null;
+            try {
+                con = DriverManager.getConnection(url, user, password);
+                System.out.println("connection succeeded");
+            } catch (SQLException e) {
+                System.out.println("Connection failed");
+                e.printStackTrace();
+            };
+
+            return con;
+        }
+
+
 }
