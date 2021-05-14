@@ -11,11 +11,13 @@ public class test2 {
         DBUtil dbUtil = new DBUtil();
         Connection connection = dbUtil.getConnection();
         Statement statement = connection.createStatement();
-        String sql = "select name from follower where username='AndreiS'";
+        String sql = "select version()";
         ResultSet rs = statement.executeQuery(sql);
         while (rs.next()){
-            System.out.println(rs);
+            System.out.println(rs.getString(1));
         }
+
+
 
 
 

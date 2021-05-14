@@ -14,7 +14,7 @@ public class DBUtil {
     public Connection getConnection()throws Exception{
         Class.forName(driver);
         Connection con= DriverManager.getConnection(url,user,password);
-        System.out.println("connection succeeded "+con);
+        System.out.println("already connected to "+con);
         return con;
     }
 
