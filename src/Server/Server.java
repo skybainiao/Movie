@@ -42,4 +42,8 @@ public interface Server extends Remote {
     int getStar() throws RemoteException;
     String getText() throws RemoteException;
 
+
+    //DB
+    ArrayList<Movie> getMoviesFromDB();
+
 }

@@ -3,9 +3,13 @@ package Server;
 import Shared.Model.Review;
 import Shared.Model.User;
 import Shared.Model.Movie;
+import Shared.Util.DBMovies;
+import Shared.Util.DBUtil;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ServerImpl implements Server{
@@ -14,6 +18,8 @@ public class ServerImpl implements Server{
     private ArrayList<User> users;
     private ArrayList<Movie> movieList;
     private ArrayList<Review> reviewList;
+    private DBUtil dbUtil;
+    private DBMovies dbMovies;
     public ServerImpl() throws RemoteException {
         UnicastRemoteObject.exportObject(this,6666);
         movieList=new ArrayList<>();
@@ -21,6 +27,33 @@ public class ServerImpl implements Server{
         users=new ArrayList<>();
         review=new Review("",0,"");
         movie=new Movie(0,"","","","","");
+    }
+
+    public ArrayList<Movie> getMoviesFromDB(){
+        Connection connection=null;
+
+        try {
+            connection= dbUtil.getConnection();
+            ResultSet rs= dbMovies.getMovies(connection);
+            ArrayList<Movie> allMovies=new ArrayList<>();
+
+            while (rs.next()){
+                String title=rs.getString("title");
+                int id=rs.getInt("movieID");
+                String productionYear=rs.getString("productionYear");
+                String productionCompany=rs.getString("productionCompany");
+                String averageReview=rs.getString("averageReview");
+                String status=rs.getString("status");
+
+                Movie movie = new Movie(id,title,productionYear,productionCompany,averageReview,status);
+                allMovies.add(movie);
+            }
+            return allMovies;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
