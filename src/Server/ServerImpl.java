@@ -1,9 +1,10 @@
 package Server;
 
+import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
-import Shared.Model.Movie;
 import Shared.Util.DBMovies;
+import Shared.Util.DBUsers;
 import Shared.Util.DBUtil;
 
 import java.rmi.RemoteException;
@@ -15,55 +16,60 @@ import java.util.ArrayList;
 public class ServerImpl implements Server{
     private Movie movie;
     private Review review;
-    private ArrayList<User> users;
     private ArrayList<Movie> movieList;
     private ArrayList<Review> reviewList;
     private DBUtil dbUtil;
     private DBMovies dbMovies;
+    private DBUsers dbUsers;
     public ServerImpl() throws RemoteException {
         UnicastRemoteObject.exportObject(this,6666);
+        dbUtil=new DBUtil();
+        dbMovies=new DBMovies();
+        dbUsers=new DBUsers();
         movieList=new ArrayList<>();
         reviewList=new ArrayList<>();
-        users=new ArrayList<>();
         review=new Review("",0,"");
         movie=new Movie(0,"","","","","");
     }
 
-    public ArrayList<Movie> getMoviesFromDB(){
+
+    @Override
+    public void addUser(User user) throws RemoteException {
+        Connection connection=null;
+        try {
+            connection= dbUtil.getConnection();
+            dbUsers.addUser(connection,user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public ArrayList<User> getUsers() throws Exception {
         Connection connection=null;
 
         try {
             connection= dbUtil.getConnection();
-            ResultSet rs= dbMovies.getMovies(connection);
-            ArrayList<Movie> allMovies=new ArrayList<>();
+            ResultSet rs= dbUsers.getAllUsers(connection);
+            ArrayList<User> allUsers=new ArrayList<>();
 
             while (rs.next()){
-                String title=rs.getString("title");
-                int id=rs.getInt("movieID");
-                String productionYear=rs.getString("productionYear");
-                String productionCompany=rs.getString("productionCompany");
-                String averageReview=rs.getString("averageReview");
-                String status=rs.getString("status");
+                String username=rs.getString("username");
+                String password=rs.getString("password");
 
-                Movie movie = new Movie(id,title,productionYear,productionCompany,averageReview,status);
-                allMovies.add(movie);
+                User user=new User(username,password);
+                allUsers.add(user);
             }
-            return allMovies;
-
-        } catch (Exception e) {
+            return allUsers;
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
+
+
+
         return null;
-    }
-
-    @Override
-    public void addUser(User user) throws RemoteException {
-        users.add(user);
-    }
-
-    @Override
-    public ArrayList<User> getUsers() throws RemoteException {
-        return users;
     }
 
     @Override

@@ -8,5 +8,5 @@ import java.util.ArrayList;
 public interface LoginModel {
     void setUsername(String username) throws RemoteException;
     void addUser(User user) throws RemoteException;
-    ArrayList<User> getUsers() throws RemoteException;
+    ArrayList<User> getUsers() throws Exception;
 }

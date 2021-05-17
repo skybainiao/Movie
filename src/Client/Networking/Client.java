@@ -25,7 +25,7 @@ public interface Client extends Remote {
 
     //server methods
     void addUser(User user) throws RemoteException;
-    ArrayList<User> getUsers() throws RemoteException;
+    ArrayList<User> getUsers() throws Exception;
     void addMovie(Movie movie) throws RemoteException;
     void removeMovie(Movie movie) throws RemoteException;
     ArrayList<Movie> getMovies() throws RemoteException;

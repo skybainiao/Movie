@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface Server extends Remote {
     //Manage User
     void addUser(User user) throws RemoteException;
-    ArrayList<User> getUsers() throws RemoteException;
+    ArrayList<User> getUsers() throws Exception;
 
     //Manage Movie
     void addMovie(Movie movie) throws RemoteException;
@@ -42,8 +42,5 @@ public interface Server extends Remote {
     int getStar() throws RemoteException;
     String getText() throws RemoteException;
 
-
-    //DB
-    ArrayList<Movie> getMoviesFromDB();
 
 }

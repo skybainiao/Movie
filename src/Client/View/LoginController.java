@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+
 import javax.swing.*;
-import java.rmi.RemoteException;
 
 public class LoginController {
     private LoginVM loginVM;
@@ -36,7 +36,7 @@ public class LoginController {
     }
 
 
-    public void login() throws RemoteException {
+    public void login() throws Exception {
         if (loginVM.typeChoose().equals("customer")){
             switch (loginVM.validLogin()){
                 case "true":

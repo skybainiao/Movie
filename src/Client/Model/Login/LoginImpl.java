@@ -25,7 +25,7 @@ public class LoginImpl implements LoginModel{
     }
 
     @Override
-    public ArrayList<User> getUsers() throws RemoteException {
+    public ArrayList<User> getUsers() throws Exception {
         return client.getUsers();
     }
 

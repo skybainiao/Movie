@@ -44,7 +44,7 @@ public class LoginVM {
         loginModel.setUsername(username.getValue());
     }
 
-    public String validLogin() throws RemoteException {
+    public String validLogin() throws Exception {
         for (int i = 0; i < loginModel.getUsers().size(); i++) {
             if (loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
                 return "true";

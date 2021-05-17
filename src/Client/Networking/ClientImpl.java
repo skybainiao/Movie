@@ -200,7 +200,7 @@ public class ClientImpl implements Client{
     }
 
     @Override
-    public ArrayList<User> getUsers() throws RemoteException {
+    public ArrayList<User> getUsers() throws Exception {
         return server.getUsers();
     }
 }
