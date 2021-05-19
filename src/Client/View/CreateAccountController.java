@@ -47,6 +47,8 @@ public class CreateAccountController {
                 case "too short password":
                     JOptionPane.showMessageDialog(null,"too short password");
                     break;
+                case "pls enter":
+                    JOptionPane.showMessageDialog(null,"pls enter");
             }
         }
         else {

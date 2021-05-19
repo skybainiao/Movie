@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;
@@ -49,7 +50,7 @@ public class ViewHandler {
             mainStage.setTitle("OverView");
             overViewScene=new Scene(root);
         }
-        catch (IOException e){
+        catch (IOException | SQLException e){
             e.printStackTrace();
         }
         mainStage.setScene(overViewScene);
@@ -68,7 +69,7 @@ public class ViewHandler {
             mainStage.setTitle("Admin");
             adminViewScene=new Scene(root);
         }
-        catch (IOException e){
+        catch (IOException | SQLException e){
             e.printStackTrace();
         }
         mainStage.setScene(adminViewScene);
@@ -92,5 +93,10 @@ public class ViewHandler {
         }
         mainStage.setScene(createScene);
         mainStage.show();
+    }
+
+    private Scene detailScene;
+    public void openDetailView(){
+
     }
 }

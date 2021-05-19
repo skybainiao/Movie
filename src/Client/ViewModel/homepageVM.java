@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class homepageVM {
@@ -41,7 +42,7 @@ public class homepageVM {
         return model.getWatchedMovies();
     }
 
-    public ArrayList<Movie> allMovies() throws RemoteException {
+    public ArrayList<Movie> allMovies() throws RemoteException, SQLException {
         return model.getMovies();
     }
 

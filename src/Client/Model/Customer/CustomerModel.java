@@ -3,6 +3,7 @@ package Client.Model.Customer;
 import Shared.Model.Movie;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CustomerModel {
@@ -15,6 +16,6 @@ public interface CustomerModel {
     void addWatchedMovie(Movie movie)throws RemoteException;
     void removeWatchedMovie(Movie movie) throws RemoteException;
     ArrayList<Movie> getWatchedMovies() throws RemoteException;
-    ArrayList<Movie> getMovies() throws RemoteException;
+    ArrayList<Movie> getMovies() throws RemoteException, SQLException;
     String getUsername() throws RemoteException;
 }

@@ -3,95 +3,94 @@ package Server;
 import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
-import Shared.Util.DBMovies;
-import Shared.Util.DBUsers;
-import Shared.Util.DBUtil;
+import Shared.Util.JDBC;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ServerImpl implements Server{
     private Movie movie;
     private Review review;
-    private ArrayList<Movie> movieList;
     private ArrayList<Review> reviewList;
-    private DBUtil dbUtil;
-    private DBMovies dbMovies;
-    private DBUsers dbUsers;
-    public ServerImpl() throws RemoteException {
+    private JDBC jdbc;
+    public ServerImpl() throws Exception {
         UnicastRemoteObject.exportObject(this,6666);
-        dbUtil=new DBUtil();
-        dbMovies=new DBMovies();
-        dbUsers=new DBUsers();
-        movieList=new ArrayList<>();
+        this.jdbc=new JDBC();
         reviewList=new ArrayList<>();
+        movie=new Movie("",0,"","","","","");
         review=new Review("",0,"");
-        movie=new Movie(0,"","","","","");
     }
 
 
     @Override
     public void addUser(User user) throws RemoteException {
-        Connection connection=null;
         try {
-            connection= dbUtil.getConnection();
-            dbUsers.addUser(connection,user);
+            jdbc.addUser(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public ArrayList<User> getUsers() throws Exception {
-        Connection connection=null;
+    public ArrayList<User> getUsers() throws RemoteException, SQLException {
+        ResultSet rs = jdbc.getAllUsers();
+        ArrayList<User> userList =new ArrayList<>();
 
-        try {
-            connection= dbUtil.getConnection();
-            ResultSet rs= dbUsers.getAllUsers(connection);
-            ArrayList<User> allUsers=new ArrayList<>();
-
-            while (rs.next()){
-                String username=rs.getString("username");
-                String password=rs.getString("password");
-
-                User user=new User(username,password);
-                allUsers.add(user);
+        try{
+            while(rs.next()){
+                userList.add(new User(rs.getString("username"),rs.getString("password")));
             }
-            return allUsers;
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    @Override
+    public void addMovie(Movie movie) throws RemoteException {
+        try {
+            jdbc.addMovie(movie);
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-
-
-        return null;
     }
 
     @Override
-    public void addMovie(Movie movie) throws RemoteException {
-        movieList.add(movie);
+    public void removeMovie(int movieID) throws RemoteException, SQLException {
+        jdbc.removeMovie(movieID);
     }
 
     @Override
-    public void removeMovie(Movie movie) throws RemoteException {
-       for (int i =0;i<movieList.size();i++)
-       {
-           if (movieList.get(i).getId()== movie.getId())
-           {
-               movieList.remove(i);
-               break;
-           }
-       }
-    }
+    public ArrayList<Movie> getMovies() throws RemoteException, SQLException {
+        ResultSet rs = jdbc.getAllMovies();
+        ArrayList<Movie> allMovies = new ArrayList<>();
 
-    @Override
-    public ArrayList<Movie> getMovies() throws RemoteException {
-        return movieList;
+        try {
+            while (rs.next()){
+                String title=rs.getString("title");
+                int movieID=rs.getInt("movieID");
+                String productionYear=rs.getString("productionYear");
+                String productionCompany=rs.getString("productionCompany");
+                String averageReview=rs.getString("averageReview");
+                String status=rs.getString("status");
+                String genre=rs.getString("genre");
+
+                Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre);
+                allMovies.add(movie);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return allMovies;
     }
 
     @Override

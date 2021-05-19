@@ -22,11 +22,12 @@
             <TableView fx:id="movieTableView" layoutX="207.0" layoutY="152.0" prefHeight="597.0" prefWidth="920.0" style="-fx-background-color: grey;">
               <columns>
                 <TableColumn fx:id="id" prefWidth="40.0" style="-fx-background-color: grey;" text="ID" />
-                <TableColumn fx:id="title" minWidth="0.0" prefWidth="206.0" style="-fx-background-color: grey;" text="Title" />
-                  <TableColumn fx:id="productionYear" prefWidth="107.0" style="-fx-background-color: grey;" text="ProductionYear" />
-                  <TableColumn fx:id="productionCompany" prefWidth="286.0" style="-fx-background-color: grey;" text="ProductionCompany" />
-                  <TableColumn fx:id="status" prefWidth="165.0" style="-fx-background-color: grey;" text="Status" />
-                  <TableColumn fx:id="averageReview" minWidth="9.0" prefWidth="121.0" style="-fx-background-color: grey;" text="AverageReview" />
+                <TableColumn fx:id="title" minWidth="0.0" prefWidth="222.0" style="-fx-background-color: grey;" text="Title" />
+                  <TableColumn fx:id="productionYear" prefWidth="91.0" style="-fx-background-color: grey;" text="ProductionYear" />
+                  <TableColumn fx:id="productionCompany" prefWidth="182.0" style="-fx-background-color: grey;" text="ProductionCompany" />
+                  <TableColumn fx:id="status" prefWidth="167.0" style="-fx-background-color: grey;" text="Status" />
+                  <TableColumn fx:id="averageReview" minWidth="9.0" prefWidth="111.0" style="-fx-background-color: grey;" text="AverageReview" />
+                  <TableColumn fx:id="genre" prefWidth="106.0" style="-fx-background-color: grey;" text="Genre" />
               </columns>
             </TableView>
             <VBox layoutX="204.0" layoutY="64.0" prefHeight="688.0" prefWidth="0.0">

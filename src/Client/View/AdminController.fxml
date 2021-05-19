@@ -15,7 +15,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="movieTableView" layoutX="14.0" layoutY="98.0" prefHeight="600.0" prefWidth="556.0">
+      <TableView fx:id="movieTableView" layoutX="14.0" layoutY="98.0" prefHeight="600.0" prefWidth="645.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="33.0" text="ID" />
           <TableColumn fx:id="title" prefWidth="117.0" text="Title" />
@@ -23,6 +23,7 @@
             <TableColumn fx:id="productionCompany" prefWidth="138.0" text="ProductionCompany" />
             <TableColumn fx:id="averageReview" prefWidth="94.0" text="AverageReview" />
             <TableColumn fx:id="status" prefWidth="79.0" text="Status" />
+            <TableColumn fx:id="genre" prefWidth="89.0" text="Genre" />
         </columns>
       </TableView>
       <Label layoutX="171.0" layoutY="58.0" text="All Movies List">
@@ -30,18 +31,20 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="titleText" layoutX="726.0" layoutY="165.0" prefHeight="27.0" prefWidth="226.0" />
-      <TextField fx:id="statusText" layoutX="726.0" layoutY="222.0" prefHeight="27.0" prefWidth="226.0" />
-      <TextField fx:id="productionYearText" layoutX="726.0" layoutY="282.0" prefHeight="27.0" prefWidth="226.0" />
-      <TextField fx:id="averageReviewText" layoutX="726.0" layoutY="343.0" prefHeight="27.0" prefWidth="226.0" />
-      <TextField fx:id="productionCompanyText" layoutX="726.0" layoutY="411.0" prefHeight="27.0" prefWidth="226.0" />
-      <Label layoutX="646.0" layoutY="170.0" text="Title" />
-      <Label layoutX="615.0" layoutY="287.0" text="ProductionYear" />
-      <Label layoutX="601.0" layoutY="416.0" text="ProductionCompany" />
-      <Label layoutX="615.0" layoutY="348.0" text="AverageReview" />
-      <Label layoutX="640.0" layoutY="227.0" text="Status" />
-      <Button fx:id="add" layoutX="726.0" layoutY="494.0" mnemonicParsing="false" onAction="#addMovie" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: grey;" text="Add" textFill="WHITE" />
-      <Button fx:id="edit" layoutX="726.0" layoutY="543.0" mnemonicParsing="false" onAction="#editMovie" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: grey;" text="Edit" textFill="WHITE" />
-      <Button fx:id="remove" layoutX="726.0" layoutY="594.0" mnemonicParsing="false" onAction="#removeMovie" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: grey;" text="Remove" textFill="WHITE" />
+      <TextField fx:id="titleText" layoutX="808.0" layoutY="165.0" prefHeight="27.0" prefWidth="226.0" />
+      <TextField fx:id="statusText" layoutX="808.0" layoutY="222.0" prefHeight="27.0" prefWidth="226.0" />
+      <TextField fx:id="productionYearText" layoutX="808.0" layoutY="282.0" prefHeight="27.0" prefWidth="226.0" />
+      <TextField fx:id="averageReviewText" layoutX="808.0" layoutY="343.0" prefHeight="27.0" prefWidth="226.0" />
+      <TextField fx:id="productionCompanyText" layoutX="808.0" layoutY="411.0" prefHeight="27.0" prefWidth="226.0" />
+      <Label layoutX="726.0" layoutY="170.0" text="Title" />
+      <Label layoutX="695.0" layoutY="287.0" text="ProductionYear" />
+      <Label layoutX="681.0" layoutY="416.0" text="ProductionCompany" />
+      <Label layoutX="695.0" layoutY="348.0" text="AverageReview" />
+      <Label layoutX="720.0" layoutY="227.0" text="Status" />
+      <Button fx:id="add" layoutX="772.0" layoutY="526.0" mnemonicParsing="false" onAction="#addMovie" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: grey;" text="Add" textFill="WHITE" />
+      <Button fx:id="edit" layoutX="772.0" layoutY="577.0" mnemonicParsing="false" onAction="#editMovie" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: grey;" text="Edit" textFill="WHITE" />
+      <Button fx:id="remove" layoutX="772.0" layoutY="625.0" mnemonicParsing="false" onAction="#removeMovie" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: grey;" text="Remove" textFill="WHITE" />
+      <TextField fx:id="genreText" layoutX="808.0" layoutY="464.0" prefHeight="27.0" prefWidth="226.0" />
+      <Label layoutX="723.0" layoutY="469.0" text="Genre" />
    </children>
 </AnchorPane>

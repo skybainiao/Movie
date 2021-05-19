@@ -47,17 +47,18 @@ public class LoginVM {
     public String validLogin() throws Exception {
         for (int i = 0; i < loginModel.getUsers().size(); i++) {
             if (loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
+                System.out.println("true");
                 return "true";
             }else if (loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && !loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
+                System.out.println("invalid password");
                 return "invalid password";
             }
             else if (!loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
+                System.out.println("invalid username");
                 return "invalid username";
             }
-            else if (!loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && !loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
-                return "invalid username or password";
-            }
         }
+        System.out.println("error");
         return "error";
     }
 

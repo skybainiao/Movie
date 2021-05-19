@@ -5,6 +5,7 @@ import Shared.Model.Movie;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerImpl implements CustomerModel{
@@ -60,7 +61,7 @@ public class CustomerImpl implements CustomerModel{
     }
 
     @Override
-    public ArrayList<Movie> getMovies() throws RemoteException {
+    public ArrayList<Movie> getMovies() throws RemoteException, SQLException {
         return client.getMovies();
     }
 

@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientImpl implements Client{
@@ -80,12 +81,12 @@ public class ClientImpl implements Client{
     }
 
     @Override
-    public void removeMovie(Movie movie) throws RemoteException {
-        server.removeMovie(movie);
+    public void removeMovie(int movieID) throws RemoteException, SQLException {
+        server.removeMovie(movieID);
     }
 
     @Override
-    public ArrayList<Movie> getMovies() throws RemoteException {
+    public ArrayList<Movie> getMovies() throws RemoteException, SQLException {
         return server.getMovies();
     }
 
@@ -201,6 +202,7 @@ public class ClientImpl implements Client{
 
     @Override
     public ArrayList<User> getUsers() throws Exception {
+        System.out.println(server.getUsers());
         return server.getUsers();
     }
 }

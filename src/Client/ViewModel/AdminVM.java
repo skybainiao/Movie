@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AdminVM {
@@ -15,6 +16,7 @@ public class AdminVM {
     private StringProperty productionCompanyText;
     private StringProperty averageReviewText;
     private StringProperty statusText;
+    private StringProperty genre;
     private StringProperty addBt;
     private StringProperty removeBt;
     private StringProperty editBt;
@@ -27,29 +29,27 @@ public class AdminVM {
         productionCompanyText=new SimpleStringProperty();
         averageReviewText=new SimpleStringProperty();
         statusText=new SimpleStringProperty();
+        genre=new SimpleStringProperty();
         addBt=new SimpleStringProperty("Add");
         removeBt=new SimpleStringProperty("Remove");
         editBt=new SimpleStringProperty("Edit");
     }
 
-    public void addMovie(Movie movie) throws RemoteException {
+    public void addMovie() throws RemoteException {
+        Movie movie=new Movie(titleText.getValue(),adminModel.getId(),productionYearText.getValue(),productionCompanyText.getValue(),averageReviewText.getValue(),statusText.getValue(),genre.getValue());
         adminModel.addMovie(movie);
     }
 
-    public void removeMovie(Movie movie) throws RemoteException {
-        adminModel.removeMovie(movie);
+    public void removeMovie(int movieID) throws RemoteException, SQLException {
+        adminModel.removeMovie(movieID);
     }
 
-    public ArrayList<Movie> getAllMovies() throws RemoteException {
+    public ArrayList<Movie> getAllMovies() throws RemoteException, SQLException {
         return adminModel.getMovies();
     }
 
     public void increase() throws RemoteException {
         adminModel.increase();
-    }
-
-    public int getId() throws RemoteException {
-        return adminModel.getId();
     }
 
     public void clearField(){
@@ -58,6 +58,7 @@ public class AdminVM {
         productionYearText.setValue("");
         averageReviewText.setValue("");
         statusText.setValue("");
+        genre.setValue("");
     }
 
 
@@ -79,6 +80,10 @@ public class AdminVM {
 
     public StringProperty getStatusText(){
         return statusText;
+    }
+
+    public StringProperty getGenre(){
+        return genre;
     }
 
     public StringProperty getAddBt(){

@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class HomepageController {
     private homepageVM homepageVM;
@@ -31,11 +32,13 @@ public class HomepageController {
     @FXML
     private TableColumn<Movie,String> status;
     @FXML
+    private TableColumn<Movie,String> genre;
+    @FXML
     private Label logout;
 
 
 
-    public void init(homepageVM homepageVM, ViewHandler viewHandler) throws RemoteException {
+    public void init(homepageVM homepageVM, ViewHandler viewHandler) throws RemoteException, SQLException {
         this.homepageVM = homepageVM;
         this.viewHandler=viewHandler;
 
@@ -47,12 +50,13 @@ public class HomepageController {
         productionCompany.setCellValueFactory(new PropertyValueFactory("productionCompany"));
         averageReview.setCellValueFactory(new PropertyValueFactory("averageReview"));
         status.setCellValueFactory(new PropertyValueFactory("status"));
+        genre.setCellValueFactory(new PropertyValueFactory("genre"));
 
         getAllMovies();
     }
 
 
-    public void getAllMovies() throws RemoteException {
+    public void getAllMovies() throws RemoteException, SQLException {
         ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
         movieObservableList.addAll(homepageVM.allMovies());
         movieTableView.setItems(movieObservableList);

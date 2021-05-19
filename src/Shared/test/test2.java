@@ -1,45 +1,36 @@
 package Shared.test;
 
-import Shared.Model.User;
-import Shared.Util.DBUtil;
+import Shared.Model.Movie;
+import Shared.Util.JDBC;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class test2 {
     public static void main(String[] args) throws Exception {
-        DBUtil dbUtil = new DBUtil();
-        Connection connection = dbUtil.getConnection();
+        JDBC jdbc = new JDBC();
+        //Movie movie=new Movie("title",0,"pdy","prdc","2.2","released","good");
+        //jdbc.addMovie(movie);
 
-       //User user=new User("CJJ","dsajiopp");
 
-       //String sql="insert into system.SimpleUser(username,password)\n" +
-       //        "values(?,?);";
-       //PreparedStatement preparedStatement=connection.prepareStatement(sql);
-       //preparedStatement.setString(1, user.getUsername());
-       //preparedStatement.setString(2, user.getPassword());
-       //preparedStatement.executeUpdate();
-
-        String sql="select * from system.SimpleUser";
-        PreparedStatement preparedStatement=connection.prepareStatement(sql);
-        ResultSet rs= preparedStatement.executeQuery();
-        ArrayList<User> users=new ArrayList<>();
-
+        jdbc.getAllMovies();
+        ResultSet rs= jdbc.getAllMovies();
+        ArrayList<Movie> allMovies=new ArrayList<>();
         while (rs.next()){
-            String username=rs.getString("username");
-            String password=rs.getString("password");
+            String title=rs.getString("title");
+            int movieID=rs.getInt("movieID");
+            String productionYear=rs.getString("productionYear");
+            String productionCompany=rs.getString("productionCompany");
+            String averageReview=rs.getString("averageReview");
+            String status=rs.getString("status");
+            String genre=rs.getString("genre");
 
-            User user=new User(username,password);
-            users.add(user);
+            Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre);
+            allMovies.add(movie);
         }
 
-        System.out.println(users.size());
-        System.out.println(users);
-
-
-
-
+        for (int i = 0; i < allMovies.size(); i++) {
+            System.out.println(allMovies.get(i).getTitle());
+        }
     }
 }

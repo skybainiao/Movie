@@ -5,6 +5,7 @@ import Shared.Model.Movie;
 import Shared.Model.Review;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -27,8 +28,8 @@ public interface Client extends Remote {
     void addUser(User user) throws RemoteException;
     ArrayList<User> getUsers() throws Exception;
     void addMovie(Movie movie) throws RemoteException;
-    void removeMovie(Movie movie) throws RemoteException;
-    ArrayList<Movie> getMovies() throws RemoteException;
+    void removeMovie(int movieID) throws RemoteException, SQLException;
+    ArrayList<Movie> getMovies() throws RemoteException, SQLException;
     void addReview(Review review) throws RemoteException;
     void removeReview(Review review) throws RemoteException;
     ArrayList<Review> getReviews() throws RemoteException;

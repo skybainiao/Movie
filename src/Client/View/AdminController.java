@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class AdminController {
     private AdminVM adminVM;
@@ -32,6 +33,8 @@ public class AdminController {
     @FXML
     private TableColumn<Movie,String> status;
     @FXML
+    private TableColumn<Movie,String> genre;
+    @FXML
     private TextField titleText;
     @FXML
     private TextField productionYearText;
@@ -42,6 +45,8 @@ public class AdminController {
     @FXML
     private TextField statusText;
     @FXML
+    private TextField genreText;
+    @FXML
     private Button add;
     @FXML
     private Button remove;
@@ -50,7 +55,7 @@ public class AdminController {
 
 
 
-    public void init(AdminVM adminVM,ViewHandler viewHandler) throws RemoteException {
+    public void init(AdminVM adminVM,ViewHandler viewHandler) throws RemoteException, SQLException {
         this.adminVM=adminVM;
         this.viewHandler=viewHandler;
 
@@ -59,6 +64,7 @@ public class AdminController {
         productionCompanyText.textProperty().bindBidirectional(adminVM.getProductionCompanyText());
         averageReviewText.textProperty().bindBidirectional(adminVM.getAverageReviewText());
         statusText.textProperty().bindBidirectional(adminVM.getStatusText());
+        genreText.textProperty().bindBidirectional(adminVM.getGenre());
         add.textProperty().bindBidirectional(adminVM.getAddBt());
         remove.textProperty().bindBidirectional(adminVM.getRemoveBt());
         edit.textProperty().bindBidirectional(adminVM.getEditBt());
@@ -69,6 +75,7 @@ public class AdminController {
         productionCompany.setCellValueFactory(new PropertyValueFactory("productionCompany"));
         averageReview.setCellValueFactory(new PropertyValueFactory("averageReview"));
         status.setCellValueFactory(new PropertyValueFactory("status"));
+        genre.setCellValueFactory(new PropertyValueFactory("genre"));
 
         movieTableView.setEditable(true);
 
@@ -76,35 +83,35 @@ public class AdminController {
     }
 
 
-    public void addMovie() throws RemoteException {
+    public void addMovie() throws RemoteException, SQLException {
         adminVM.increase();
-        Movie movie = new Movie(adminVM.getId(),titleText.getText(),productionYearText.getText(),productionCompanyText.getText(),averageReviewText.getText(),statusText.getText());
-        adminVM.addMovie(movie);
+        adminVM.addMovie();
         adminVM.clearField();
         getAllMovies();
     }
 
 
-    public void removeMovie() throws RemoteException {
+    public void removeMovie() throws RemoteException, SQLException {
         Movie movieSelected = movieTableView.getSelectionModel().getSelectedItem();
-        adminVM.removeMovie(movieSelected);
+        adminVM.removeMovie(movieSelected.getId());
         movieTableView.refresh();
         getAllMovies();
     }
 
 
-    public void editMovie() throws RemoteException {
+    public void editMovie() throws RemoteException, SQLException {
         Movie movie = movieTableView.getSelectionModel().getSelectedItem();
-        adminVM.removeMovie(movie);
+        adminVM.removeMovie(movie.getId());
         titleText.setText(movie.getTitle());
         productionYearText.setText(movie.getProductionYear());
         productionCompanyText.setText(movie.getProductionCompany());
         averageReviewText.setText(movie.getAverageReview());
         statusText.setText(movie.getStatus());
+        genreText.setText(movie.getGenre());
 
     }
 
-    public void getAllMovies() throws RemoteException {
+    public void getAllMovies() throws RemoteException, SQLException {
         ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
         movieObservableList.addAll(adminVM.getAllMovies());
         movieTableView.setItems(movieObservableList);

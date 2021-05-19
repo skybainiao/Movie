@@ -9,14 +9,16 @@ public class Movie implements Serializable {
     private String productionCompany;
     private String averageReview;
     private String status;
+    private String genre;
 
-    public Movie(int id,String title,String productionYear,String productionCompany,String averageReview,String status){
+    public Movie(String title,int id,String productionYear,String productionCompany,String averageReview,String status,String genre){
         this.title=title;
         this.id=id;
         this.productionYear=productionYear;
         this.productionCompany=productionCompany;
         this.averageReview=averageReview;
         this.status=status;
+        this.genre=genre;
     }
 
     public void setAverageReview(String averageReview) {
@@ -41,6 +43,14 @@ public class Movie implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 
     public String getTitle() {

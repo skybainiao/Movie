@@ -21,7 +21,7 @@ public class CreateAccountVM {
     }
 
     public void addUser() throws RemoteException {
-        User user = new User(username.getValue(), password.getValue());
+        User user = new User(username.getValue(),password.getValue());
         loginModel.addUser(user);
     }
 
@@ -41,6 +41,9 @@ public class CreateAccountVM {
         }
         else if (password.getValue().length()<6){
             return "too short password";
+        }
+        else if (username.getValue()==null || password.getValue()==null){
+            return "pls enter";
         }
         return "correct";
     }
