@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CustomerModel {
-    void addLikeMovies(Movie movie) throws RemoteException;
+    void setLike(int like);
+    int getLike();
+    void increase();
+    Movie getMovie(Movie movie) throws SQLException, RemoteException;
+    void likeIncrease(Movie movie) throws SQLException, RemoteException;
+    void addLikeMovie(String username,String movieName) throws SQLException,RemoteException;
     void removeLikeMovies(Movie movie) throws RemoteException;
-    ArrayList<Movie> getLikedMovies() throws RemoteException;
-    void addBookMovies(Movie movie) throws RemoteException;
-    void removeBookMovies(Movie movie) throws RemoteException;
-    ArrayList<Movie> getBookMovies() throws RemoteException;
-    void addWatchedMovie(Movie movie)throws RemoteException;
-    void removeWatchedMovie(Movie movie) throws RemoteException;
-    ArrayList<Movie> getWatchedMovies() throws RemoteException;
+    ArrayList<Movie> getLikedMovies() throws RemoteException, SQLException;
     ArrayList<Movie> getMovies() throws RemoteException, SQLException;
     String getUsername() throws RemoteException;
+    String getClientName() throws RemoteException;
 }

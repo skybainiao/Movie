@@ -17,7 +17,7 @@ public class ViewModelFactory {
         loginVM=new LoginVM(modelFactory.getLoginModel());
         homepageVM =new homepageVM(modelFactory.getCustomerModel());
         createAccountVM=new CreateAccountVM(modelFactory.getLoginModel());
-        detailVM=new DetailVM();
+        detailVM=new DetailVM(modelFactory.getCustomerModel());
     }
 
     public LoginVM getLoginVM() {
@@ -34,5 +34,9 @@ public class ViewModelFactory {
 
     public CreateAccountVM getCreateAccountVM(){
         return createAccountVM;
+    }
+
+    public DetailVM getDetailVM(){
+        return detailVM;
     }
 }

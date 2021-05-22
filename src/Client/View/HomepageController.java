@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -52,6 +53,17 @@ public class HomepageController {
         status.setCellValueFactory(new PropertyValueFactory("status"));
         genre.setCellValueFactory(new PropertyValueFactory("genre"));
 
+        movieTableView.setRowFactory( tableView -> {
+            TableRow<Movie> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Movie movie = row.getItem();
+                    viewHandler.openDetailView(movie);
+                }
+            });
+            return row ;
+        });
+
         getAllMovies();
     }
 
@@ -60,6 +72,16 @@ public class HomepageController {
         ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
         movieObservableList.addAll(homepageVM.allMovies());
         movieTableView.setItems(movieObservableList);
+    }
+
+    public void getLikedMovies() throws SQLException, RemoteException {
+        ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
+        movieObservableList.addAll(homepageVM.allLikedMovies());
+        movieTableView.setItems(movieObservableList);
+    }
+
+    public void getWatchLater(){
+
     }
 
     public void logout(){

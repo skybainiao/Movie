@@ -18,35 +18,14 @@ public class homepageVM {
         logout=new SimpleStringProperty("Logout");
     }
 
-    public void addLikeMovies(Movie movie) throws RemoteException {
-        model.addLikeMovies(movie);
-    }
 
-    public void addBookMovies(Movie movie) throws RemoteException {
-        model.addBookMovies(movie);
-    }
-
-    public void addWatchedMovie(Movie movie) throws RemoteException {
-        model.addWatchedMovie(movie);
-    }
-
-    public ArrayList<Movie> allLikedMovies() throws RemoteException {
+    public ArrayList<Movie> allLikedMovies() throws RemoteException, SQLException {
         return model.getLikedMovies();
-    }
-
-    public ArrayList<Movie> allBookedMovies() throws RemoteException {
-        return model.getBookMovies();
-    }
-
-    public ArrayList<Movie> allWatchedMovies() throws RemoteException {
-        return model.getWatchedMovies();
     }
 
     public ArrayList<Movie> allMovies() throws RemoteException, SQLException {
         return model.getMovies();
     }
-
-
 
 
     public StringProperty getLogout(){

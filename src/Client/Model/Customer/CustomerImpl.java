@@ -10,14 +10,36 @@ import java.util.ArrayList;
 
 public class CustomerImpl implements CustomerModel{
     private Client client;
+    private int like;
     public CustomerImpl(Client client) throws RemoteException, NotBoundException {
         this.client=client;
     }
 
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void increase(){
+        like++;
+    }
 
     @Override
-    public void addLikeMovies(Movie movie) throws RemoteException {
-        client.addLikeMovies(movie);
+    public Movie getMovie(Movie movie) throws SQLException, RemoteException {
+        return client.getMovie(movie);
+    }
+
+    @Override
+    public void likeIncrease(Movie movie) throws SQLException, RemoteException {
+        client.likeIncrease(movie);
+    }
+
+    @Override
+    public void addLikeMovie(String username, String movieName) throws SQLException, RemoteException {
+        client.addLikeMovie(username, movieName);
     }
 
     @Override
@@ -26,38 +48,8 @@ public class CustomerImpl implements CustomerModel{
     }
 
     @Override
-    public ArrayList<Movie> getLikedMovies() throws RemoteException {
+    public ArrayList<Movie> getLikedMovies() throws RemoteException, SQLException {
         return client.getLikedMovies();
-    }
-
-    @Override
-    public void addBookMovies(Movie movie) throws RemoteException {
-        client.addBookMovies(movie);
-    }
-
-    @Override
-    public void removeBookMovies(Movie movie) throws RemoteException {
-        client.removeBookMovies(movie);
-    }
-
-    @Override
-    public ArrayList<Movie> getBookMovies() throws RemoteException {
-        return client.getBookMovies();
-    }
-
-    @Override
-    public void addWatchedMovie(Movie movie) throws RemoteException {
-        client.addWatchedMovie(movie);
-    }
-
-    @Override
-    public void removeWatchedMovie(Movie movie) throws RemoteException {
-        client.removeWatchedMovie(movie);
-    }
-
-    @Override
-    public ArrayList<Movie> getWatchedMovies() throws RemoteException {
-        return client.getWatchedMovies();
     }
 
     @Override
@@ -68,5 +60,10 @@ public class CustomerImpl implements CustomerModel{
     @Override
     public String getUsername() throws RemoteException {
         return client.getUsername();
+    }
+
+    @Override
+    public String getClientName() throws RemoteException {
+        return client.getClientName();
     }
 }

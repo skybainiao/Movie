@@ -40,18 +40,18 @@ public class LoginController {
         if (loginVM.typeChoose().equals("customer")){
             switch (loginVM.validLogin()){
                 case "true":
-                    loginVM.setIUsername();
+                    loginVM.setClientName();
                     loginVM.clearFields();
                     viewHandler.openOverView();
                     break;
-                case "invalid username":
-                    JOptionPane.showMessageDialog(null,"invalid username");
+                case "empty":
+                    JOptionPane.showMessageDialog(null,"pls enter your username or password");
                     break;
                 case "invalid password":
                     JOptionPane.showMessageDialog(null,"invalid password");
                     break;
-                case "invalid username or password":
-                    JOptionPane.showMessageDialog(null,"invalid username or password");
+                case "error":
+                    JOptionPane.showMessageDialog(null,"invalid username and invalid password");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,"enter your valid username and password");

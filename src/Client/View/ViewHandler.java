@@ -1,6 +1,7 @@
 package Client.View;
 
 import Client.ViewModel.ViewModelFactory;
+import Shared.Model.Movie;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -95,8 +96,24 @@ public class ViewHandler {
         mainStage.show();
     }
 
+    private Stage detailStage = new Stage();
     private Scene detailScene;
-    public void openDetailView(){
-
+    private DetailController detailController;
+    public void openDetailView(Movie movie){
+        try {
+            FXMLLoader loader=new FXMLLoader();
+            loader.setLocation(getClass().getResource("DetailController.fxml"));
+            Parent root=loader.load();
+            detailController=loader.getController();
+            detailController.init(this, viewModelFactory.getDetailVM());
+            detailStage.setTitle("MovieDetail");
+            detailScene=new Scene(root);
+            detailController.setValue(movie);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        detailStage.setScene(detailScene);
+        detailStage.show();
     }
 }

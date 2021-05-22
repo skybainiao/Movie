@@ -14,66 +14,58 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientImpl implements Client{
+    private String name;
     private Server server;
     private User user;
-    private ArrayList<Movie> likedMovies;
-    private ArrayList<Movie> bookMovies;
-    private ArrayList<Movie> watchedMovies;
 
-    public ClientImpl() throws RemoteException, NotBoundException {
+    public ClientImpl(String name) throws RemoteException, NotBoundException {
+        this.name=name;
         UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localhost", 6666);
         server = (Server) registry.lookup("Server");
         user=new User("","");
-        likedMovies=new ArrayList<>();
-        bookMovies=new ArrayList<>();
-        watchedMovies=new ArrayList<>();
+    }
+
+    @Override
+    public void setClientName(String name) throws RemoteException{
+        this.name = name;
+    }
+
+    @Override
+    public void addLikeMovie(String username, String movieName) throws SQLException, RemoteException {
+        server.addLikeMovie(username,movieName);
+    }
+
+    @Override
+    public String getClientName() throws RemoteException {
+        return name;
+    }
+
+    @Override
+    public Movie getMovie(Movie movie) throws SQLException, RemoteException {
+        return server.getMovie(movie);
+    }
+
+    @Override
+    public void likeIncrease(Movie movie) throws SQLException, RemoteException {
+        server.likeIncrease(movie);
+    }
+
+    @Override
+    public ArrayList<Movie> getLikedMovies() throws RemoteException, SQLException {
+        return server.getLikedMovies(getClientName());
     }
 
     @Override
     public void addLikeMovies(Movie movie) throws RemoteException {
-        likedMovies.add(movie);
+
     }
 
     @Override
     public void removeLikeMovies(Movie movie) throws RemoteException {
-        likedMovies.remove(movie);
+
     }
 
-    @Override
-    public ArrayList<Movie> getLikedMovies() throws RemoteException {
-        return likedMovies;
-    }
-
-    @Override
-    public void addBookMovies(Movie movie) throws RemoteException {
-        bookMovies.add(movie);
-    }
-
-    @Override
-    public void removeBookMovies(Movie movie) throws RemoteException {
-        bookMovies.remove(movie);
-    }
-
-    @Override
-    public ArrayList<Movie> getBookMovies() throws RemoteException {
-        return bookMovies;
-    }
-
-    @Override
-    public void addWatchedMovie(Movie movie) throws RemoteException {
-        watchedMovies.add(movie);
-    }
-
-    @Override
-    public void removeWatchedMovie(Movie movie) throws RemoteException {
-        watchedMovies.remove(movie);
-    }
-
-    @Override
-    public ArrayList<Movie> getWatchedMovies() throws RemoteException {
-        return watchedMovies;
-    }
 
     @Override
     public void addMovie(Movie movie) throws RemoteException {
@@ -105,30 +97,6 @@ public class ClientImpl implements Client{
         return server.getReviews();
     }
 
-    @Override
-    public void setAverageReview(String averageReview) throws RemoteException {
-        server.setAverageReview(averageReview);
-    }
-
-    @Override
-    public void setProductionCompany(String productionCompany) throws RemoteException {
-        server.setProductionCompany(productionCompany);
-    }
-
-    @Override
-    public void setProductionYear(String productionYear) throws RemoteException {
-        server.setProductionYear(productionYear);
-    }
-
-    @Override
-    public void setStatus(String status) throws RemoteException {
-        server.setStatus(status);
-    }
-
-    @Override
-    public void setTitle(String title) throws RemoteException {
-        server.setTitle(title);
-    }
 
     @Override
     public int getId() throws RemoteException {
@@ -136,54 +104,10 @@ public class ClientImpl implements Client{
     }
 
     @Override
-    public String getTitle() throws RemoteException {
-        return server.getTitle();
-    }
-
-    @Override
-    public String getAverageReview() throws RemoteException {
-        return server.getAverageReview();
-    }
-
-    @Override
-    public String getProductionYear() throws RemoteException {
-        return server.getProductionYear();
-    }
-
-    @Override
-    public String getProductionCompany() throws RemoteException {
-        return server.getProductionCompany();
-    }
-
-    @Override
-    public String getStatus() throws RemoteException {
-        return server.getStatus();
-    }
-
-    @Override
     public void increase() throws RemoteException {
         server.increase();
     }
 
-    @Override
-    public void setText(String text) throws RemoteException {
-        server.setText(text);
-    }
-
-    @Override
-    public void setStar(int star) throws RemoteException {
-        server.setStar(star);
-    }
-
-    @Override
-    public int getStar() throws RemoteException {
-        return server.getStar();
-    }
-
-    @Override
-    public String getText() throws RemoteException {
-        return server.getText();
-    }
 
     @Override
     public void setUsername(String username) throws RemoteException {
@@ -202,7 +126,6 @@ public class ClientImpl implements Client{
 
     @Override
     public ArrayList<User> getUsers() throws Exception {
-        System.out.println(server.getUsers());
         return server.getUsers();
     }
 }

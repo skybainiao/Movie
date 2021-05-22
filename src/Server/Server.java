@@ -14,34 +14,25 @@ public interface Server extends Remote {
     ArrayList<User> getUsers() throws Exception;
 
     //Manage Movie
+    Movie getMovie(Movie movie) throws SQLException,RemoteException;
+    void likeIncrease(Movie movie) throws SQLException, RemoteException;
+    void dislikeIncrease() throws RemoteException;
     void addMovie(Movie movie) throws RemoteException;
     void removeMovie(int movieID) throws RemoteException, SQLException;
     ArrayList<Movie> getMovies() throws RemoteException, SQLException;
+    ArrayList<Movie> getLikedMovies(String username) throws RemoteException, SQLException;
+    void addLikeMovie(String username,String movieName) throws SQLException,RemoteException;
 
     //Manage Review
     void addReview(Review review) throws RemoteException;
     void removeReview(Review review) throws RemoteException;
     ArrayList<Review> getReviews() throws RemoteException;
 
-    //Methods of Movie
-    void setAverageReview(String averageReview) throws RemoteException;
-    void setProductionCompany(String productionCompany) throws RemoteException;
-    void setProductionYear(String productionYear) throws RemoteException;
-    void setStatus(String status) throws RemoteException;
-    void setTitle(String title) throws RemoteException;
+
     int getId() throws RemoteException;
-    String getTitle() throws RemoteException;
-    String getAverageReview() throws RemoteException;
-    String getProductionYear() throws RemoteException;
-    String getProductionCompany() throws RemoteException;
-    String getStatus() throws RemoteException;
     void increase() throws RemoteException;
 
-    //Methods of Review
-    void setText(String text) throws RemoteException;
-    void setStar(int star) throws RemoteException;
-    int getStar() throws RemoteException;
-    String getText() throws RemoteException;
+
 
 
 }

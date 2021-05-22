@@ -105,7 +105,7 @@
                   <Insets top="150.0" />
                </VBox.margin>
             </ImageView>
-            <ImageView fitHeight="41.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="41.0" fitWidth="195.0" onMouseClicked="#getLikedMovies" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@picture/liked.png" />
                </image>

@@ -30,6 +30,10 @@ public class LoginVM {
         isAdmin.setValue(false);
     }
 
+    public void setClientName() throws RemoteException {
+        loginModel.setClientName(username.getValue());
+    }
+
     public String typeChoose(){
         if (isCustomer.getValue()==true && isAdmin.getValue()==false){
             return "customer";
@@ -40,26 +44,25 @@ public class LoginVM {
         return "error";
     }
 
-    public void setIUsername() throws RemoteException {
-        loginModel.setUsername(username.getValue());
-    }
 
     public String validLogin() throws Exception {
-        for (int i = 0; i < loginModel.getUsers().size(); i++) {
-            if (loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
+        for(int i=0; i<loginModel.getUsers().size(); i++){
+            if(loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
                 System.out.println("true");
                 return "true";
-            }else if (loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && !loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
+            }
+            else if(loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && !(loginModel.getUsers().get(i).getPassword().equals(password.getValue()))){
                 System.out.println("invalid password");
                 return "invalid password";
             }
-            else if (!loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
-                System.out.println("invalid username");
-                return "invalid username";
+            else if (username.getValue()==null || password.getValue()==null){
+                System.out.println("empty");
+                return "empty";
             }
+
         }
-        System.out.println("error");
         return "error";
+
     }
 
 

@@ -14,10 +14,6 @@ public class LoginImpl implements LoginModel{
         this.client=client;
     }
 
-    @Override
-    public void setUsername(String username) throws RemoteException {
-        client.setUsername(username);
-    }
 
     @Override
     public void addUser(User user) throws RemoteException {
@@ -28,5 +24,12 @@ public class LoginImpl implements LoginModel{
     public ArrayList<User> getUsers() throws Exception {
         return client.getUsers();
     }
+
+    @Override
+    public void setClientName(String name) throws RemoteException {
+        client.setClientName(name);
+    }
+
+
 
 }

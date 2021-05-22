@@ -4,7 +4,6 @@ import Client.Model.Admin.AdminModel;
 import Shared.Model.Movie;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class AdminVM {
     }
 
     public void addMovie() throws RemoteException {
-        Movie movie=new Movie(titleText.getValue(),adminModel.getId(),productionYearText.getValue(),productionCompanyText.getValue(),averageReviewText.getValue(),statusText.getValue(),genre.getValue());
+        Movie movie=new Movie(titleText.getValue(),adminModel.getId(),productionYearText.getValue(),productionCompanyText.getValue(),averageReviewText.getValue(),statusText.getValue(),genre.getValue(),0,0);
         adminModel.addMovie(movie);
     }
 

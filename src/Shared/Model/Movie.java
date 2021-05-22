@@ -10,8 +10,10 @@ public class Movie implements Serializable {
     private String averageReview;
     private String status;
     private String genre;
+    private int likeNum;
+    private int dislikeNum;
 
-    public Movie(String title,int id,String productionYear,String productionCompany,String averageReview,String status,String genre){
+    public Movie(String title,int id,String productionYear,String productionCompany,String averageReview,String status,String genre,int likeNum,int dislikeNum){
         this.title=title;
         this.id=id;
         this.productionYear=productionYear;
@@ -19,6 +21,16 @@ public class Movie implements Serializable {
         this.averageReview=averageReview;
         this.status=status;
         this.genre=genre;
+        this.likeNum=likeNum;
+        this.dislikeNum=dislikeNum;
+    }
+
+    public int getLikeNum() {
+        return likeNum;
+    }
+
+    public int getDislikeNum() {
+        return dislikeNum;
     }
 
     public void setAverageReview(String averageReview) {
@@ -75,6 +87,14 @@ public class Movie implements Serializable {
 
     public void increase(){
         id++;
+    }
+
+    public void likeIncrease(){
+        likeNum++;
+    }
+
+    public void dislikeIncrease(){
+        dislikeNum++;
     }
 
     @Override

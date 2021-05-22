@@ -13,15 +13,11 @@ import java.util.ArrayList;
 
 public class ServerImpl implements Server{
     private Movie movie;
-    private Review review;
-    private ArrayList<Review> reviewList;
     private JDBC jdbc;
     public ServerImpl() throws Exception {
         UnicastRemoteObject.exportObject(this,6666);
         this.jdbc=new JDBC();
-        reviewList=new ArrayList<>();
-        movie=new Movie("",0,"","","","","");
-        review=new Review("",0,"");
+        movie=new Movie("",0,"","","","","",0,0);
     }
 
 
@@ -50,6 +46,39 @@ public class ServerImpl implements Server{
             e.printStackTrace();
         }
         return userList;
+    }
+
+    @Override
+    public void likeIncrease(Movie movie) throws SQLException ,RemoteException{
+        jdbc.updateLike(movie.getTitle());
+    }
+
+    public Movie getMovie(Movie movie) throws SQLException ,RemoteException{
+        ResultSet rs = jdbc.getMovie(movie.getTitle());
+        try {
+            while (rs.next()){
+                String title=rs.getString("title");
+                int movieID=rs.getInt("movieID");
+                String productionYear=rs.getString("productionYear");
+                String productionCompany=rs.getString("productionCompany");
+                String averageReview=rs.getString("averageReview");
+                String status=rs.getString("status");
+                String genre=rs.getString("genre");
+                int likeNum=rs.getInt("likeNum");
+                int dislikeNum=rs.getInt("dislikeNum");
+                Movie movie1=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre,likeNum,dislikeNum);
+                return movie1;
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void dislikeIncrease() throws RemoteException{
+        movie.dislikeIncrease();
     }
 
     @Override
@@ -82,8 +111,10 @@ public class ServerImpl implements Server{
                 String averageReview=rs.getString("averageReview");
                 String status=rs.getString("status");
                 String genre=rs.getString("genre");
+                int likeNum=rs.getInt("likeNum");
+                int dislikeNum=rs.getInt("dislikeNum");
 
-                Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre);
+                Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre,likeNum,dislikeNum);
                 allMovies.add(movie);
             }
 
@@ -93,44 +124,53 @@ public class ServerImpl implements Server{
         return allMovies;
     }
 
+    public void addLikeMovie(String username,String movieName) throws SQLException,RemoteException {
+        jdbc.addLikeMovie(username,movieName);
+    }
+
+
+    @Override
+    public ArrayList<Movie> getLikedMovies(String username) throws RemoteException, SQLException {
+        ResultSet rs = jdbc.getLikedMovies(username);
+        ArrayList<Movie> likedMovies = new ArrayList<>();
+
+        try {
+            while (rs.next()){
+                String title=rs.getString("title");
+                int movieID=rs.getInt("movieID");
+                String productionYear=rs.getString("productionYear");
+                String productionCompany=rs.getString("productionCompany");
+                String averageReview=rs.getString("averageReview");
+                String status=rs.getString("status");
+                String genre=rs.getString("genre");
+                int likeNum=rs.getInt("likeNum");
+                int dislikeNum=rs.getInt("dislikeNum");
+
+                Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre,likeNum,dislikeNum);
+                likedMovies.add(movie);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return likedMovies;
+    }
+
+
+
     @Override
     public void addReview(Review review) throws RemoteException {
-        reviewList.add(review);
+
     }
 
     @Override
     public void removeReview(Review review) throws RemoteException {
-        reviewList.remove(review);
+
     }
 
     @Override
     public ArrayList<Review> getReviews() throws RemoteException {
-        return reviewList;
-    }
-
-    @Override
-    public void setAverageReview(String averageReview) throws RemoteException {
-        movie.setAverageReview(averageReview);
-    }
-
-    @Override
-    public void setProductionCompany(String productionCompany) throws RemoteException{
-        movie.setProductionCompany(productionCompany);
-    }
-
-    @Override
-    public void setProductionYear(String productionYear) throws RemoteException {
-        movie.setProductionYear(productionYear);
-    }
-
-    @Override
-    public void setStatus(String status) throws RemoteException {
-        movie.setStatus(status);
-    }
-
-    @Override
-    public void setTitle(String title) throws RemoteException {
-        movie.setTitle(title);
+        return null;
     }
 
     @Override
@@ -139,53 +179,8 @@ public class ServerImpl implements Server{
     }
 
     @Override
-    public String getTitle() throws RemoteException {
-        return movie.getTitle();
-    }
-
-    @Override
-    public String getAverageReview() throws RemoteException {
-        return movie.getAverageReview();
-    }
-
-    @Override
-    public String getProductionYear() throws RemoteException {
-        return movie.getProductionYear();
-    }
-
-    @Override
-    public String getProductionCompany() throws RemoteException {
-        return movie.getProductionCompany();
-    }
-
-    @Override
-    public String getStatus() throws RemoteException {
-        return movie.getStatus();
-    }
-
-    @Override
     public void increase() throws RemoteException {
         movie.increase();
-    }
-
-    @Override
-    public void setText(String text) throws RemoteException {
-        review.setText(text);
-    }
-
-    @Override
-    public void setStar(int star) throws RemoteException {
-        review.setStar(star);
-    }
-
-    @Override
-    public int getStar() throws RemoteException {
-        return review.getStar();
-    }
-
-    @Override
-    public String getText() throws RemoteException {
-        return review.getText();
     }
 
 
