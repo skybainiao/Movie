@@ -2,6 +2,7 @@ package Client.Model.Customer;
 
 import Client.Networking.Client;
 import Shared.Model.Movie;
+import Shared.Model.Review;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -10,22 +11,42 @@ import java.util.ArrayList;
 
 public class CustomerImpl implements CustomerModel{
     private Client client;
-    private int like;
+
+
     public CustomerImpl(Client client) throws RemoteException, NotBoundException {
         this.client=client;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    @Override
+    public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
+        return client.getSearchMovies(searchText);
     }
 
-    public int getLike() {
-        return like;
+    @Override
+    public ArrayList<Movie> getWatchLater() throws SQLException, RemoteException {
+        return client.getWatchLater();
     }
 
-    public void increase(){
-        like++;
+    @Override
+    public void addWatchLater(String username, Movie movie) throws SQLException, RemoteException {
+        client.addWatchLater(username,movie);
     }
+
+    @Override
+    public ArrayList<Review> getReviews(Movie movie) throws RemoteException, SQLException {
+        return client.getReviews(movie);
+    }
+
+    @Override
+    public void addReview(Review review, String title) throws RemoteException, SQLException {
+        client.addReview(review,title);
+    }
+
+    @Override
+    public void dislikeIncrease(Movie movie) throws RemoteException, SQLException {
+        client.dislikeIncrease(movie);
+    }
+
 
     @Override
     public Movie getMovie(Movie movie) throws SQLException, RemoteException {
@@ -40,11 +61,6 @@ public class CustomerImpl implements CustomerModel{
     @Override
     public void addLikeMovie(String username, String movieName) throws SQLException, RemoteException {
         client.addLikeMovie(username, movieName);
-    }
-
-    @Override
-    public void removeLikeMovies(Movie movie) throws RemoteException {
-        client.removeLikeMovies(movie);
     }
 
     @Override
@@ -66,4 +82,6 @@ public class CustomerImpl implements CustomerModel{
     public String getClientName() throws RemoteException {
         return client.getClientName();
     }
+
+
 }

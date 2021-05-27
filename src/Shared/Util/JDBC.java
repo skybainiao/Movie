@@ -1,6 +1,7 @@
 package Shared.Util;
 
 import Shared.Model.Movie;
+import Shared.Model.Review;
 import Shared.Model.User;
 
 import java.sql.*;
@@ -15,7 +16,7 @@ public class JDBC {
     public JDBC()throws Exception{
         Class.forName(driver);
         connection = DriverManager.getConnection(url,user,password);
-        System.out.println("already connected to "+connection);
+        System.out.println("Connected to database : "+connection.getCatalog());
     }
 
 
@@ -106,14 +107,62 @@ public class JDBC {
     }
 
 
-    public int updateDislike(int dislikeNum,String title) throws SQLException {
-        String sql="update system.Movie set dislikeNum = ? where title =?";
+    public int updateDislike(String title) throws SQLException {
+        String sql="update system.Movie set dislikeNum = dislikeNum+1 where title =?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,dislikeNum);
+        preparedStatement.setString(1,title);
+
+        return preparedStatement.executeUpdate();
+    }
+
+
+    public int addReview(Review review,String title) throws SQLException {
+        String sql="insert into system.Review(username, text, title)\n" + "values (?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,review.getUsername());
+        preparedStatement.setString(2,review.getText());
+        preparedStatement.setString(3,title);
+
+        return preparedStatement.executeUpdate();
+    }
+
+
+    public ResultSet getReviews(String title) throws SQLException {
+        String sql="select * from system.Review where title=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,title);
+
+        return preparedStatement.executeQuery();
+    }
+
+
+    public int addWatchLaterMovie(String username,String title) throws SQLException {
+        String sql="insert into system.watchLater(username, watchLater)\n" + "values (?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,username);
         preparedStatement.setString(2,title);
 
         return preparedStatement.executeUpdate();
     }
+
+
+    public ResultSet getWatchLaterMovies(String username) throws SQLException {
+        String sql="select * from system.Movie\n" + "where title in (select watchLater from system.watchLater where username=?)";
+        PreparedStatement preparedStatement=connection.prepareStatement(sql);
+        preparedStatement.setString(1,username);
+
+        return preparedStatement.executeQuery();
+    }
+
+
+    public ResultSet getSearchMovies(String searchText) throws SQLException {
+        String sql="SELECT * FROM system.Movie WHERE Movie.title  LIKE ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,"%"+searchText+"%");
+
+        return preparedStatement.executeQuery();
+    }
+
 
 
 

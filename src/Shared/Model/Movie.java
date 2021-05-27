@@ -89,13 +89,7 @@ public class Movie implements Serializable {
         id++;
     }
 
-    public void likeIncrease(){
-        likeNum++;
-    }
 
-    public void dislikeIncrease(){
-        dislikeNum++;
-    }
 
     @Override
     public String toString() {

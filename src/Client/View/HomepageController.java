@@ -5,12 +5,8 @@ import Shared.Model.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -36,6 +32,12 @@ public class HomepageController {
     private TableColumn<Movie,String> genre;
     @FXML
     private Label logout;
+    @FXML
+    private Label username;
+    @FXML
+    private TextField search;
+    @FXML
+    private Label searchLabel;
 
 
 
@@ -44,6 +46,9 @@ public class HomepageController {
         this.viewHandler=viewHandler;
 
         logout.textProperty().bindBidirectional(homepageVM.getLogout());
+        username.textProperty().bindBidirectional(homepageVM.getUsername());
+        search.textProperty().bindBidirectional(homepageVM.getSearch());
+        searchLabel.textProperty().bindBidirectional(homepageVM.getSearchLabel());
 
         title.setCellValueFactory(new PropertyValueFactory("title"));
         id.setCellValueFactory(new PropertyValueFactory("id"));
@@ -65,8 +70,16 @@ public class HomepageController {
         });
 
         getAllMovies();
+        getLikedMovies();
+        getWatchLater();
+        getName();
     }
 
+    public void getSearchMovies() throws SQLException, RemoteException {
+        ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
+        movieObservableList.addAll(homepageVM.getSearchMovies());
+        movieTableView.setItems(movieObservableList);
+    }
 
     public void getAllMovies() throws RemoteException, SQLException {
         ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
@@ -80,22 +93,19 @@ public class HomepageController {
         movieTableView.setItems(movieObservableList);
     }
 
-    public void getWatchLater(){
+    public void getWatchLater() throws SQLException, RemoteException {
+        ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
+        movieObservableList.addAll(homepageVM.getWatchLater());
+        movieTableView.setItems(movieObservableList);
+    }
 
+    public void getName() throws RemoteException {
+        homepageVM.setUsername();
     }
 
     public void logout(){
         viewHandler.openLoginView();
     }
-
-
-
-
-
-
-
-
-
 
 
 

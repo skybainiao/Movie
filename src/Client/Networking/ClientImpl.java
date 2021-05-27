@@ -5,6 +5,8 @@ import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -13,13 +15,15 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClientImpl implements Client{
+public class ClientImpl implements Client {
     private String name;
     private Server server;
     private User user;
+    private PropertyChangeSupport support;
 
     public ClientImpl(String name) throws RemoteException, NotBoundException {
         this.name=name;
+        support=new PropertyChangeSupport(this);
         UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localhost", 6666);
         server = (Server) registry.lookup("Server");
@@ -42,6 +46,26 @@ public class ClientImpl implements Client{
     }
 
     @Override
+    public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
+        return server.getSearchMovies(searchText);
+    }
+
+    @Override
+    public ArrayList<Movie> getWatchLater() throws SQLException, RemoteException {
+        return server.getWatchLater(getClientName());
+    }
+
+    @Override
+    public void addWatchLater(String username, Movie movie) throws SQLException, RemoteException {
+        server.addWatchLater(username,movie);
+    }
+
+    @Override
+    public void dislikeIncrease(Movie movie) throws RemoteException, SQLException {
+        server.dislikeIncrease(movie);
+    }
+
+    @Override
     public Movie getMovie(Movie movie) throws SQLException, RemoteException {
         return server.getMovie(movie);
     }
@@ -54,16 +78,6 @@ public class ClientImpl implements Client{
     @Override
     public ArrayList<Movie> getLikedMovies() throws RemoteException, SQLException {
         return server.getLikedMovies(getClientName());
-    }
-
-    @Override
-    public void addLikeMovies(Movie movie) throws RemoteException {
-
-    }
-
-    @Override
-    public void removeLikeMovies(Movie movie) throws RemoteException {
-
     }
 
 
@@ -83,18 +97,15 @@ public class ClientImpl implements Client{
     }
 
     @Override
-    public void addReview(Review review) throws RemoteException {
-        server.addReview(review);
+    public void addReview(Review review, String title) throws RemoteException, SQLException {
+        server.addReview(review,title);
     }
 
-    @Override
-    public void removeReview(Review review) throws RemoteException {
-        server.removeReview(review);
-    }
+
 
     @Override
-    public ArrayList<Review> getReviews() throws RemoteException {
-        return server.getReviews();
+    public ArrayList<Review> getReviews(Movie movie) throws RemoteException, SQLException {
+        return server.getReviews(movie);
     }
 
 
@@ -127,5 +138,15 @@ public class ClientImpl implements Client{
     @Override
     public ArrayList<User> getUsers() throws Exception {
         return server.getUsers();
+    }
+
+    @Override
+    public void addPCL(String name, PropertyChangeListener listener) throws RemoteException{
+        support.addPropertyChangeListener(name, listener);
+    }
+
+    @Override
+    public void removePCL(String name, PropertyChangeListener listener) throws RemoteException{
+        support.removePropertyChangeListener(name, listener);
     }
 }

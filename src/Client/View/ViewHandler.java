@@ -110,7 +110,7 @@ public class ViewHandler {
             detailScene=new Scene(root);
             detailController.setValue(movie);
         }
-        catch (IOException e){
+        catch (IOException | SQLException e){
             e.printStackTrace();
         }
         detailStage.setScene(detailScene);

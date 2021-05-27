@@ -14,7 +14,6 @@ public class LoginImpl implements LoginModel{
         this.client=client;
     }
 
-
     @Override
     public void addUser(User user) throws RemoteException {
         client.addUser(user);

@@ -20,7 +20,6 @@ public class ServerImpl implements Server{
         movie=new Movie("",0,"","","","","",0,0);
     }
 
-
     @Override
     public void addUser(User user) throws RemoteException {
         try {
@@ -49,10 +48,44 @@ public class ServerImpl implements Server{
     }
 
     @Override
+    public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
+        ResultSet rs = jdbc.getSearchMovies(searchText);
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        try {
+            while (rs.next()){
+                String title=rs.getString("title");
+                int movieID=rs.getInt("movieID");
+                String productionYear=rs.getString("productionYear");
+                String productionCompany=rs.getString("productionCompany");
+                String averageReview=rs.getString("averageReview");
+                String status=rs.getString("status");
+                String genre=rs.getString("genre");
+                int likeNum=rs.getInt("likeNum");
+                int dislikeNum=rs.getInt("dislikeNum");
+
+                Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre,likeNum,dislikeNum);
+                movies.add(movie);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+
+    @Override
     public void likeIncrease(Movie movie) throws SQLException ,RemoteException{
         jdbc.updateLike(movie.getTitle());
     }
 
+    @Override
+    public void dislikeIncrease(Movie movie) throws RemoteException, SQLException {
+        jdbc.updateDislike(movie.getTitle());
+    }
+
+    @Override
     public Movie getMovie(Movie movie) throws SQLException ,RemoteException{
         ResultSet rs = jdbc.getMovie(movie.getTitle());
         try {
@@ -74,11 +107,6 @@ public class ServerImpl implements Server{
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public void dislikeIncrease() throws RemoteException{
-        movie.dislikeIncrease();
     }
 
     @Override
@@ -128,7 +156,6 @@ public class ServerImpl implements Server{
         jdbc.addLikeMovie(username,movieName);
     }
 
-
     @Override
     public ArrayList<Movie> getLikedMovies(String username) throws RemoteException, SQLException {
         ResultSet rs = jdbc.getLikedMovies(username);
@@ -157,20 +184,30 @@ public class ServerImpl implements Server{
     }
 
 
-
     @Override
-    public void addReview(Review review) throws RemoteException {
-
+    public void addReview(Review review,String title) throws RemoteException, SQLException {
+        jdbc.addReview(review,title);
     }
 
-    @Override
-    public void removeReview(Review review) throws RemoteException {
-
-    }
 
     @Override
-    public ArrayList<Review> getReviews() throws RemoteException {
-        return null;
+    public ArrayList<Review> getReviews(Movie movie) throws RemoteException, SQLException {
+        ResultSet rs = jdbc.getReviews(movie.getTitle());
+        ArrayList<Review> reviews = new ArrayList<>();
+
+        try {
+            while (rs.next()){
+                String username=rs.getString("username");
+                String text=rs.getString("text");
+
+                Review review=new Review(username,text);
+                reviews.add(review);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return reviews;
     }
 
     @Override
@@ -182,6 +219,39 @@ public class ServerImpl implements Server{
     public void increase() throws RemoteException {
         movie.increase();
     }
+
+    @Override
+    public void addWatchLater(String username,Movie movie) throws SQLException {
+        jdbc.addWatchLaterMovie(username,movie.getTitle());
+    }
+
+    public ArrayList<Movie> getWatchLater(String username) throws SQLException {
+        ResultSet rs=jdbc.getWatchLaterMovies(username);
+        ArrayList<Movie> movies=new ArrayList<>();
+
+        try {
+            while (rs.next()){
+                String title=rs.getString("title");
+                int movieID=rs.getInt("movieID");
+                String productionYear=rs.getString("productionYear");
+                String productionCompany=rs.getString("productionCompany");
+                String averageReview=rs.getString("averageReview");
+                String status=rs.getString("status");
+                String genre=rs.getString("genre");
+                int likeNum=rs.getInt("likeNum");
+                int dislikeNum=rs.getInt("dislikeNum");
+
+                Movie movie=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre,likeNum,dislikeNum);
+                movies.add(movie);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+
 
 
 }

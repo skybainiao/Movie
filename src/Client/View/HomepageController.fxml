@@ -48,7 +48,7 @@
       </AnchorPane>
       <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="62.0" prefWidth="1128.0">
          <children>
-            <Label prefHeight="44.0" prefWidth="99.0" text="Logo" textFill="#ff5757">
+            <Label prefHeight="53.0" prefWidth="103.0" text="Logo" textFill="#ff5757">
                <font>
                   <Font size="43.0" />
                </font>
@@ -56,7 +56,7 @@
                   <Insets left="40.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <TextField prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: #363636#363636 #363636#363636;">
+            <TextField fx:id="search" prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: #363636#363636 #363636#363636;">
                <HBox.margin>
                   <Insets left="280.0" top="20.0" />
                </HBox.margin>
@@ -68,7 +68,7 @@
                   </InnerShadow>
                </effect>
             </TextField>
-            <Label text="Search" textFill="#e1dede">
+            <Label fx:id="searchLabel" onMouseClicked="#getSearchMovies" prefHeight="26.0" prefWidth="64.0" text="Search" textFill="#e1dede">
                <HBox.margin>
                   <Insets left="20.0" top="20.0" />
                </HBox.margin>
@@ -87,11 +87,23 @@
                   <InnerShadow choke="0.17" height="30.18" radius="13.835" width="27.16" />
                </effect>
             </ImageView>
-            <Label fx:id="logout" onMouseClicked="#logout" text="Log out" textFill="WHITE">
-               <HBox.margin>
-                  <Insets left="5.0" top="22.0" />
-               </HBox.margin>
-            </Label>
+            <VBox prefHeight="62.0" prefWidth="72.0">
+               <children>
+                  <Label fx:id="username" text="Label" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="10.0" top="8.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="logout" onMouseClicked="#logout" text="Log out" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </HBox>
       <VBox layoutX="-1.0" layoutY="62.0" prefHeight="688.0" prefWidth="206.0">
@@ -113,17 +125,9 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </ImageView>
-            <ImageView fitHeight="39.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="39.0" fitWidth="181.0" onMouseClicked="#getWatchLater" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@picture/book.png" />
-               </image>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@picture/watch.png" />
                </image>
                <VBox.margin>
                   <Insets top="20.0" />

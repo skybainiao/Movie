@@ -2,6 +2,7 @@ package Client.View;
 
 import Client.ViewModel.AdminVM;
 import Shared.Model.Movie;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -94,8 +95,16 @@ public class AdminController {
     public void removeMovie() throws RemoteException, SQLException {
         Movie movieSelected = movieTableView.getSelectionModel().getSelectedItem();
         adminVM.removeMovie(movieSelected.getId());
-        movieTableView.refresh();
-        getAllMovies();
+        Platform.runLater(()->{
+            try {
+                getAllMovies();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
     }
 
 
@@ -108,8 +117,8 @@ public class AdminController {
         averageReviewText.setText(movie.getAverageReview());
         statusText.setText(movie.getStatus());
         genreText.setText(movie.getGenre());
-
     }
+
 
     public void getAllMovies() throws RemoteException, SQLException {
         ObservableList<Movie> movieObservableList = FXCollections.observableArrayList();
