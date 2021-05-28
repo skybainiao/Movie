@@ -56,7 +56,7 @@
                   <Insets left="40.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="search" prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: #363636#363636 #363636#363636;">
+            <TextField fx:id="search" prefHeight="27.0" prefWidth="314.0" promptText="Search movies" style="-fx-background-color: white;">
                <HBox.margin>
                   <Insets left="280.0" top="20.0" />
                </HBox.margin>
@@ -76,7 +76,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="51.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="picture" fitHeight="51.0" fitWidth="50.0" onMouseClicked="#addUrl" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@picture/E564A3081DA752292D55A05FAE71EF6C.jpg" />
                </image>

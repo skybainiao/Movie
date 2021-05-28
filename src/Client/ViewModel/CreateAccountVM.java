@@ -5,6 +5,7 @@ import Shared.Model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class CreateAccountVM {
@@ -20,7 +21,7 @@ public class CreateAccountVM {
         passwordAgain=new SimpleStringProperty();
     }
 
-    public void addUser() throws RemoteException {
+    public void addUser() throws RemoteException, NotBoundException {
         User user = new User(username.getValue(),password.getValue());
         loginModel.addUser(user);
     }

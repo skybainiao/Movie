@@ -17,4 +17,10 @@ public class ClientStart extends Application {
         ViewHandler viewHandler=new ViewHandler(viewModelFactory);
         viewHandler.openLoginView();
     }
+
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+    }
 }

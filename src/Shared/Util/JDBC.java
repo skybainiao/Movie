@@ -164,6 +164,21 @@ public class JDBC {
     }
 
 
+    public int addUrl(String url,String username) throws SQLException {
+        String sql="update system.Avatar set movieImagePath = ? where username=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,url);
+        preparedStatement.setString(2,username);
+        return preparedStatement.executeUpdate();
+    }
+
+
+    public ResultSet getImageOfUser(String username) throws SQLException {
+        String sql="select movieImagePath from system.Avatar where username = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,username);
+        return preparedStatement.executeQuery();
+    }
 
 
 

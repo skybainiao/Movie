@@ -18,6 +18,16 @@ public class CustomerImpl implements CustomerModel{
     }
 
     @Override
+    public String getUrlOfUser() throws SQLException, RemoteException {
+        return client.getUrlOfUser();
+    }
+
+    @Override
+    public void addUrl(String url) throws SQLException, RemoteException {
+        client.addUrl(url);
+    }
+
+    @Override
     public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
         return client.getSearchMovies(searchText);
     }

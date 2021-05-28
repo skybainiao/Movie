@@ -46,6 +46,16 @@ public class ClientImpl implements Client {
     }
 
     @Override
+    public String getUrlOfUser() throws SQLException, RemoteException {
+        return server.getUrlOfUser(getClientName());
+    }
+
+    @Override
+    public void addUrl(String url) throws SQLException, RemoteException {
+        server.addUrl(url,getClientName());
+    }
+
+    @Override
     public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
         return server.getSearchMovies(searchText);
     }
@@ -100,7 +110,6 @@ public class ClientImpl implements Client {
     public void addReview(Review review, String title) throws RemoteException, SQLException {
         server.addReview(review,title);
     }
-
 
 
     @Override

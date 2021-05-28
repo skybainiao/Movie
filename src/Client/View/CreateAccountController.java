@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class CreateAccountController {
@@ -30,7 +31,7 @@ public class CreateAccountController {
     }
 
 
-    public void create() throws RemoteException {
+    public void create() throws RemoteException, NotBoundException {
         if (createAccountVM.validCreate()==true){
             switch (createAccountVM.validChar()){
                 case "correct":

@@ -16,6 +16,8 @@ public interface Client extends Remote, PCS {
     void setClientName(String name) throws RemoteException;
     String getClientName() throws RemoteException;
 
+    String getUrlOfUser() throws SQLException, RemoteException;
+    void addUrl(String url) throws SQLException, RemoteException;
     ArrayList<Movie> getSearchMovies(String searchText) throws SQLException,RemoteException;
     ArrayList<Movie> getWatchLater() throws SQLException, RemoteException;
     void addWatchLater(String username,Movie movie) throws SQLException, RemoteException;

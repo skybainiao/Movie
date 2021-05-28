@@ -7,6 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -14,6 +20,8 @@ public class HomepageController {
     private homepageVM homepageVM;
     private ViewHandler viewHandler;
 
+    @FXML
+    private ImageView picture;
     @FXML
     private TableView<Movie> movieTableView;
     @FXML
@@ -57,6 +65,8 @@ public class HomepageController {
         averageReview.setCellValueFactory(new PropertyValueFactory("averageReview"));
         status.setCellValueFactory(new PropertyValueFactory("status"));
         genre.setCellValueFactory(new PropertyValueFactory("genre"));
+
+        picture.setImage(new Image(getUrl()));
 
         movieTableView.setRowFactory( tableView -> {
             TableRow<Movie> row = new TableRow<>();
@@ -102,6 +112,20 @@ public class HomepageController {
     public void getName() throws RemoteException {
         homepageVM.setUsername();
     }
+
+    public String getUrl() throws SQLException, RemoteException {
+        return homepageVM.getUrl();
+    }
+
+    public void addUrl() throws SQLException, RemoteException {
+        FileChooser fileChooser = new FileChooser();
+        File tmp = fileChooser.showOpenDialog(new Stage());
+        Image image = new Image("file:" + tmp.getAbsolutePath());
+        String url = "file:" + tmp.getAbsolutePath();
+        picture.setImage(image);
+        homepageVM.addUrl(url);
+    }
+
 
     public void logout(){
         viewHandler.openLoginView();

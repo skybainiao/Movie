@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class LoginVM {
@@ -30,7 +31,7 @@ public class LoginVM {
         isAdmin.setValue(false);
     }
 
-    public void setClientName() throws RemoteException {
+    public void setClientName() throws RemoteException, NotBoundException {
         loginModel.setClientName(username.getValue());
     }
 

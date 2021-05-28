@@ -20,6 +20,7 @@ public class ServerImpl implements Server{
         movie=new Movie("",0,"","","","","",0,0);
     }
 
+
     @Override
     public void addUser(User user) throws RemoteException {
         try {
@@ -28,6 +29,7 @@ public class ServerImpl implements Server{
             e.printStackTrace();
         }
     }
+
 
     @Override
     public ArrayList<User> getUsers() throws RemoteException, SQLException {
@@ -44,8 +46,10 @@ public class ServerImpl implements Server{
         {
             e.printStackTrace();
         }
+
         return userList;
     }
+
 
     @Override
     public ArrayList<Movie> getSearchMovies(String searchText) throws SQLException, RemoteException {
@@ -71,19 +75,33 @@ public class ServerImpl implements Server{
         catch (Exception e){
             e.printStackTrace();
         }
+
         return movies;
     }
 
 
     @Override
     public void likeIncrease(Movie movie) throws SQLException ,RemoteException{
-        jdbc.updateLike(movie.getTitle());
+        try {
+            jdbc.updateLike(movie.getTitle());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
+
 
     @Override
     public void dislikeIncrease(Movie movie) throws RemoteException, SQLException {
-        jdbc.updateDislike(movie.getTitle());
+        try {
+            jdbc.updateDislike(movie.getTitle());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public Movie getMovie(Movie movie) throws SQLException ,RemoteException{
@@ -100,14 +118,17 @@ public class ServerImpl implements Server{
                 int likeNum=rs.getInt("likeNum");
                 int dislikeNum=rs.getInt("dislikeNum");
                 Movie movie1=new Movie(title,movieID,productionYear,productionCompany,averageReview,status,genre,likeNum,dislikeNum);
+
                 return movie1;
             }
         }
         catch (Exception e){
             e.printStackTrace();
         }
+
         return null;
     }
+
 
     @Override
     public void addMovie(Movie movie) throws RemoteException {
@@ -120,10 +141,17 @@ public class ServerImpl implements Server{
 
     }
 
+
     @Override
     public void removeMovie(int movieID) throws RemoteException, SQLException {
-        jdbc.removeMovie(movieID);
+        try {
+            jdbc.removeMovie(movieID);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public ArrayList<Movie> getMovies() throws RemoteException, SQLException {
@@ -149,12 +177,21 @@ public class ServerImpl implements Server{
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return allMovies;
     }
 
+
+    @Override
     public void addLikeMovie(String username,String movieName) throws SQLException,RemoteException {
-        jdbc.addLikeMovie(username,movieName);
+        try {
+            jdbc.addLikeMovie(username,movieName);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public ArrayList<Movie> getLikedMovies(String username) throws RemoteException, SQLException {
@@ -180,13 +217,19 @@ public class ServerImpl implements Server{
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return likedMovies;
     }
 
 
     @Override
     public void addReview(Review review,String title) throws RemoteException, SQLException {
-        jdbc.addReview(review,title);
+        try {
+            jdbc.addReview(review,title);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -207,24 +250,35 @@ public class ServerImpl implements Server{
         catch (Exception e){
             e.printStackTrace();
         }
+
         return reviews;
     }
+
 
     @Override
     public int getId() throws RemoteException {
         return movie.getId();
     }
 
+
     @Override
     public void increase() throws RemoteException {
         movie.increase();
     }
 
+
     @Override
     public void addWatchLater(String username,Movie movie) throws SQLException {
-        jdbc.addWatchLaterMovie(username,movie.getTitle());
+        try {
+            jdbc.addWatchLaterMovie(username,movie.getTitle());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
+
+    @Override
     public ArrayList<Movie> getWatchLater(String username) throws SQLException {
         ResultSet rs=jdbc.getWatchLaterMovies(username);
         ArrayList<Movie> movies=new ArrayList<>();
@@ -248,7 +302,32 @@ public class ServerImpl implements Server{
         catch (Exception e){
             e.printStackTrace();
         }
+
         return movies;
+    }
+
+
+    @Override
+    public void addUrl(String url,String username) throws SQLException ,RemoteException{
+        try {
+            jdbc.addUrl(url,username);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public String getUrlOfUser(String username) throws SQLException ,RemoteException{
+        ResultSet rs = jdbc.getImageOfUser(username);
+        String url = "";
+
+        while (rs.next()){
+             url = rs.getString("movieImagePath");
+        }
+
+        return url;
     }
 
 

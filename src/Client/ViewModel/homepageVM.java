@@ -24,8 +24,16 @@ public class homepageVM {
         searchLabel=new SimpleStringProperty("Search");
     }
 
+    public String getUrl() throws SQLException, RemoteException {
+        return model.getUrlOfUser();
+    }
+
     public ArrayList<Movie> getSearchMovies() throws SQLException, RemoteException {
         return model.getSearchMovies(search.getValue());
+    }
+
+    public void addUrl(String url) throws SQLException, RemoteException {
+        model.addUrl(url);
     }
 
     public void setUsername() throws RemoteException {

@@ -38,7 +38,6 @@ public class DetailVM implements PCS{
         dislike=new SimpleStringProperty();
         textField=new SimpleStringProperty();
         support=new PropertyChangeSupport(this);
-
     }
 
 

@@ -14,6 +14,8 @@ public interface Server extends Remote{
     ArrayList<User> getUsers() throws Exception;
 
     //Manage Movie
+    String getUrlOfUser(String username) throws SQLException,RemoteException;
+    void addUrl(String url,String username) throws SQLException,RemoteException;
     ArrayList<Movie> getSearchMovies(String searchText) throws SQLException,RemoteException;
     ArrayList<Movie> getWatchLater(String username) throws SQLException,RemoteException;
     void addWatchLater(String username,Movie movie) throws SQLException,RemoteException;
