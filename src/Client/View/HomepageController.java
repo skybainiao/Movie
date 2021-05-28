@@ -66,7 +66,9 @@ public class HomepageController {
         status.setCellValueFactory(new PropertyValueFactory("status"));
         genre.setCellValueFactory(new PropertyValueFactory("genre"));
 
-        picture.setImage(new Image(getUrl()));
+        if (getUrl()!=null){
+            picture.setImage(new Image(getUrl()));
+        }
 
         movieTableView.setRowFactory( tableView -> {
             TableRow<Movie> row = new TableRow<>();
@@ -109,14 +111,6 @@ public class HomepageController {
         movieTableView.setItems(movieObservableList);
     }
 
-    public void getName() throws RemoteException {
-        homepageVM.setUsername();
-    }
-
-    public String getUrl() throws SQLException, RemoteException {
-        return homepageVM.getUrl();
-    }
-
     public void addUrl() throws SQLException, RemoteException {
         FileChooser fileChooser = new FileChooser();
         File tmp = fileChooser.showOpenDialog(new Stage());
@@ -126,6 +120,13 @@ public class HomepageController {
         homepageVM.addUrl(url);
     }
 
+    public void getName() throws RemoteException {
+        homepageVM.setUsername();
+    }
+
+    public String getUrl() throws SQLException, RemoteException {
+        return homepageVM.getUrl();
+    }
 
     public void logout(){
         viewHandler.openLoginView();
