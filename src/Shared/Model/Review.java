@@ -12,17 +12,12 @@ public class Review implements Serializable{
     }
 
     public void setUsername(String username) {
-        this.reviewUsername=reviewUsername;
+        this.reviewUsername=username;
     }
 
     public String getUsername() {
         return reviewUsername;
     }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
 
     public String getText() {
         return text;

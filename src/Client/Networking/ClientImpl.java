@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ClientImpl implements Client {
     private String name;
-    private Server server;
+    private Server server;                                                                                           
     private User user;
     private PropertyChangeSupport support;
 

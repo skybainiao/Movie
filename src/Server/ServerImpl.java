@@ -4,7 +4,6 @@ import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
 import Shared.Util.JDBC;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;

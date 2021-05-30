@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 
 public interface Client extends Remote, PCS {
-    //client methods
     void setClientName(String name) throws RemoteException;
     String getClientName() throws RemoteException;
 

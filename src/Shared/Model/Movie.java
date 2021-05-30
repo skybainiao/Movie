@@ -33,22 +33,6 @@ public class Movie implements Serializable {
         return dislikeNum;
     }
 
-    public void setAverageReview(String averageReview) {
-        this.averageReview = averageReview;
-    }
-
-    public void setProductionCompany(String productionCompany) {
-        this.productionCompany = productionCompany;
-    }
-
-    public void setProductionYear(String productionYear) {
-        this.productionYear = productionYear;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }

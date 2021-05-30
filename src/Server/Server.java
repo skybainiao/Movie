@@ -9,11 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface Server extends Remote{
-    //Manage User
     void addUser(User user) throws RemoteException;
     ArrayList<User> getUsers() throws Exception;
 
-    //Manage Movie
     String getUrlOfUser(String username) throws SQLException,RemoteException;
     void addUrl(String url,String username) throws SQLException,RemoteException;
     ArrayList<Movie> getSearchMovies(String searchText) throws SQLException,RemoteException;
@@ -28,7 +26,6 @@ public interface Server extends Remote{
     ArrayList<Movie> getLikedMovies(String username) throws RemoteException, SQLException;
     void addLikeMovie(String username,String movieName) throws SQLException,RemoteException;
 
-    //Manage Review
     void addReview(Review review,String title) throws RemoteException, SQLException;
     ArrayList<Review> getReviews(Movie movie) throws RemoteException, SQLException;
 
