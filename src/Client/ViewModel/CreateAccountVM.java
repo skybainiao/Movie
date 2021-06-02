@@ -1,6 +1,6 @@
 package Client.ViewModel;
 
-import Client.Model.Login.LoginModel;
+import Client.Model.Login.LoginState;
 import Shared.Model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -9,13 +9,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class CreateAccountVM {
-    private LoginModel loginModel;
+    private LoginState loginState;
     private StringProperty username;
     private StringProperty password;
     private StringProperty passwordAgain;
 
-    public CreateAccountVM(LoginModel loginModel){
-        this.loginModel=loginModel;
+    public CreateAccountVM(LoginState loginState){
+        this.loginState = loginState;
         username=new SimpleStringProperty();
         password=new SimpleStringProperty();
         passwordAgain=new SimpleStringProperty();
@@ -23,7 +23,7 @@ public class CreateAccountVM {
 
     public void addUser() throws RemoteException, NotBoundException {
         User user = new User(username.getValue(),password.getValue());
-        loginModel.addUser(user);
+        loginState.addUser(user);
     }
 
     public boolean validCreate(){

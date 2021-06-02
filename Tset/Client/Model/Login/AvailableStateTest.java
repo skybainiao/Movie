@@ -12,12 +12,12 @@ import java.rmi.registry.Registry;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class LoginImplTest {
+class AvailableStateTest {
     private Server server;
     private Client client;
-    private LoginModel loginModel;
+    private LoginState loginState;
 
-    LoginImplTest() throws Exception {
+    AvailableStateTest() throws Exception {
         server=new ServerImpl();
         client=new ClientImpl("chen");
     }

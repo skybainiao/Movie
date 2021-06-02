@@ -7,10 +7,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class LoginImpl implements LoginModel{
+public class AvailableState implements LoginState {
     private Client client;
 
-    public LoginImpl(Client client) throws RemoteException, NotBoundException {
+    public AvailableState(Client client) throws RemoteException, NotBoundException {
         this.client=client;
     }
 
@@ -20,7 +20,8 @@ public class LoginImpl implements LoginModel{
     }
 
     @Override
-    public ArrayList<User> getUsers() throws Exception {
+    public ArrayList<User> login() throws Exception {
+        System.out.println("Successfully login");
         return client.getUsers();
     }
 

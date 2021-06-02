@@ -1,6 +1,6 @@
 package Client.ViewModel;
 
-import Client.Model.Login.LoginModel;
+import Client.Model.Login.LoginState;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,14 +10,14 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class LoginVM {
-    private LoginModel loginModel;
+    private LoginState loginState;
     private StringProperty username;
     private StringProperty password;
     private BooleanProperty isCustomer;
     private BooleanProperty isAdmin;
 
-    public LoginVM(LoginModel loginModel){
-        this.loginModel=loginModel;
+    public LoginVM(LoginState loginState){
+        this.loginState = loginState;
         username=new SimpleStringProperty();
         password=new SimpleStringProperty();
         isCustomer=new SimpleBooleanProperty();
@@ -32,7 +32,7 @@ public class LoginVM {
     }
 
     public void setClientName() throws RemoteException, NotBoundException {
-        loginModel.setClientName(username.getValue());
+        loginState.setClientName(username.getValue());
     }
 
     public String typeChoose(){
@@ -47,12 +47,12 @@ public class LoginVM {
 
 
     public String validLogin() throws Exception {
-        for(int i=0; i<loginModel.getUsers().size(); i++){
-            if(loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && loginModel.getUsers().get(i).getPassword().equals(password.getValue())){
+        for(int i = 0; i< loginState.login().size(); i++){
+            if(loginState.login().get(i).getUsername().equals(username.getValue()) && loginState.login().get(i).getPassword().equals(password.getValue())){
                 System.out.println("true");
                 return "true";
             }
-            else if(loginModel.getUsers().get(i).getUsername().equals(username.getValue()) && !(loginModel.getUsers().get(i).getPassword().equals(password.getValue()))){
+            else if(loginState.login().get(i).getUsername().equals(username.getValue()) && !(loginState.login().get(i).getPassword().equals(password.getValue()))){
                 System.out.println("invalid password");
                 return "invalid password";
             }
