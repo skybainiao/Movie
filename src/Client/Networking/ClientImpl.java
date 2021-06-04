@@ -28,7 +28,9 @@ public class ClientImpl implements Client {
         Registry registry = LocateRegistry.getRegistry("localhost", 6666);
         server = (Server) registry.lookup("Server");
         user=new User("","");
+        server.addClient(this);
     }
+
 
     @Override
     public void setClientName(String name) throws RemoteException{

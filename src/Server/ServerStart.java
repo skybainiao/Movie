@@ -9,5 +9,7 @@ public class ServerStart {
         Registry registry=LocateRegistry.createRegistry(6666);
         registry.bind("Server",server);
         System.out.println("Server Start");
+        Status status = new Status(server);
+        status.run();
     }
 }

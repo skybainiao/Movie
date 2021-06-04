@@ -35,6 +35,10 @@ public class LoginVM {
         loginState.setClientName(username.getValue());
     }
 
+    public String ret(){
+        return username.getValue();
+    }
+
     public String typeChoose(){
         if (isCustomer.getValue()==true && isAdmin.getValue()==false){
             return "customer";

@@ -1,4 +1,5 @@
 package Server;
+import Client.Networking.Client;
 import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
@@ -8,7 +9,8 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface Server extends Remote{
+public interface Server extends Remote,PCS{
+    void addClient(Client client)throws RemoteException;
     void addUser(User user) throws RemoteException;
     ArrayList<User> getUsers() throws Exception;
 

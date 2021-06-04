@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 import javax.swing.*;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class LoginController {
     private LoginVM loginVM;
@@ -35,12 +37,19 @@ public class LoginController {
         isAdministrator.setToggleGroup(toggleGroup);
     }
 
+    public void setUsername() throws NotBoundException, RemoteException {
+        loginVM.setClientName();
+    }
+
+    public String getName(){
+        return loginVM.ret();
+    }
 
     public void login() throws Exception {
         if (loginVM.typeChoose().equals("customer")){
             switch (loginVM.validLogin()){
                 case "true":
-                    loginVM.setClientName();
+                    setUsername();
                     loginVM.clearFields();
                     viewHandler.openOverView();
                     break;

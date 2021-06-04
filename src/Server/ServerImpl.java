@@ -1,9 +1,13 @@
 package Server;
 
+import Client.Networking.Client;
 import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
 import Shared.Util.JDBC;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
@@ -13,10 +17,20 @@ import java.util.ArrayList;
 public class ServerImpl implements Server{
     private Movie movie;
     private JDBC jdbc;
+    private ArrayList<Client> clients;
+    private PropertyChangeSupport support;
     public ServerImpl() throws Exception {
+        clients=new ArrayList<>();
+        support=new PropertyChangeSupport(this);
         UnicastRemoteObject.exportObject(this,6666);
         this.jdbc=new JDBC();
         movie=new Movie("",0,"","","","","",0,0);
+    }
+
+
+    public void addClient(Client client){
+        clients.add(client);
+        support.firePropertyChange("client",null,client);
     }
 
 
@@ -24,6 +38,7 @@ public class ServerImpl implements Server{
     public void addUser(User user) throws RemoteException {
         try {
             jdbc.addUser(user);
+            support.firePropertyChange("user",user,user.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -330,6 +345,13 @@ public class ServerImpl implements Server{
     }
 
 
+    @Override
+    public void addPCL(String name, PropertyChangeListener listener) throws RemoteException {
+        support.addPropertyChangeListener(name,listener);
+    }
 
-
+    @Override
+    public void removePCL(String name, PropertyChangeListener listener) throws RemoteException {
+        support.removePropertyChangeListener(name,listener);
+    }
 }

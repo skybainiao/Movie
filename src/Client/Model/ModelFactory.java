@@ -7,6 +7,7 @@ import Client.Model.Customer.CustomerModel;
 import Client.Model.Login.AvailableState;
 import Client.Model.Login.LoginState;
 import Client.Networking.Client;
+import Server.Status;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -16,6 +17,7 @@ public class ModelFactory {
     private CustomerModel customerModel;
     private LoginState loginState;
     private Client client;
+    private Status status;
 
     public ModelFactory(Client client){
         this.client=client;
@@ -41,4 +43,6 @@ public class ModelFactory {
         }
         return loginState;
     }
+
+
 }

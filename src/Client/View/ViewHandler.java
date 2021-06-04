@@ -21,6 +21,7 @@ public class ViewHandler {
     }
 
 
+
     private Scene loginScene;
     public void openLoginView(){
         try {
