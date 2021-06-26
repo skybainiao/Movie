@@ -5,29 +5,41 @@ import Shared.Model.Movie;
 import Shared.Model.Review;
 import Shared.Model.User;
 import Shared.Util.JDBC;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ServerImpl implements Server{
+
     private Movie movie;
     private JDBC jdbc;
     private ArrayList<Client> clients;
     private PropertyChangeSupport support;
+    private Status status;
+
     public ServerImpl() throws Exception {
+        Registry registry= LocateRegistry.createRegistry(6666);
+        registry.bind("Server",this);
+        UnicastRemoteObject.exportObject(this,6666);
+
+        System.out.println("Server Start");
+
         clients=new ArrayList<>();
         support=new PropertyChangeSupport(this);
-        UnicastRemoteObject.exportObject(this,6666);
         this.jdbc=new JDBC();
         movie=new Movie("",0,"","","","","",0,0);
+        this.status=new Status(this);
+        status.run();
     }
 
 
+    @Override
     public void addClient(Client client){
         clients.add(client);
         support.firePropertyChange("client",null,client);

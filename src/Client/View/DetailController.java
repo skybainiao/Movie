@@ -59,8 +59,8 @@ public class DetailController implements PropertyChangeListener {
         disliked.textProperty().bindBidirectional(detailVM.getDislike());
         enterReview.textProperty().bindBidirectional(detailVM.getTextField());
 
-        detailVM.addPCL("likeNum",evt -> propertyChange(evt));
-        detailVM.addPCL("dislikeNum",evt -> propertyChange(evt));
+        detailVM.addPCL("likeNum",this);
+        detailVM.addPCL("dislikeNum",this);
 
         Platform.runLater(()->{
             try {

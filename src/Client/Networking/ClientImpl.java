@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientImpl implements Client {
+
     private String name;
     private Server server;                                                                                           
     private User user;
